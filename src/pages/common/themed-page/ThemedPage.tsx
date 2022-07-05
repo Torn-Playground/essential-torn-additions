@@ -8,15 +8,18 @@ interface ThemedPageProps {
 }
 
 export default function ThemedPage(props: ThemedPageProps) {
-    const [theme, setTheme] = useState(Theme.LIGHT);
+    const [theme, setTheme] = useState(Theme.DARK);
 
     const changeTheme = (theme: Theme) => setTheme(theme);
 
     useEffect(() => {
         if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
             setTheme(Theme.DARK);
+        } else {
+            // Currently only DARK theme is supported.
+            setTheme(Theme.DARK);
         }
-    });
+    }, []);
     useEffect(() => {
         switch (theme) {
             case Theme.LIGHT:

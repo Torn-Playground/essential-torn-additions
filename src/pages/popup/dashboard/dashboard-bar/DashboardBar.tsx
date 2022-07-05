@@ -9,6 +9,7 @@ interface DashboardBarProps {
     tickTime: EpochTimeStamp;
     fullTime: EpochTimeStamp | undefined;
     link: string;
+    progressColor: string;
 }
 
 export default function DashboardBar(props: DashboardBarProps) {
@@ -23,7 +24,7 @@ export default function DashboardBar(props: DashboardBarProps) {
     // - design
     // - on hover full text
     return (
-        <a href={props.link} target="_blank" data-full={getFullText()} className={styles.resetLink}>
+        <a href={props.link} target="_blank" data-full={getFullText()} className={styles.bar}>
             <div>
                 <span>{props.name}</span>
 
@@ -35,7 +36,7 @@ export default function DashboardBar(props: DashboardBarProps) {
                 </p>
             </div>
 
-            <DashboardBarProgress currentValue={props.currentValue} maxValue={props.maxValue} />
+            <DashboardBarProgress currentValue={props.currentValue} maxValue={props.maxValue} color={props.progressColor} />
         </a>
     );
 }

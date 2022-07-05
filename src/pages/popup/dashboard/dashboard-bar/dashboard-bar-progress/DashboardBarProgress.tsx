@@ -1,16 +1,15 @@
+import * as styles from "./DashboardBarProgress.module.scss";
+
 interface DashboardBarProgressProps {
     currentValue: number;
     maxValue: number;
+    color: string;
 }
 
 export default function DashboardBarProgress(props: DashboardBarProgressProps) {
-    const x = (props.currentValue / props.maxValue) * 100;
-
-    // FIXME - implement
-    // - make sure it doesn't overflow
     return (
-        <div>
-            <div style={{ width: `$%` }}>{x}%</div>
+        <div className={styles.progress}>
+            <div className={styles.progressValue} style={{ width: `${(props.currentValue / props.maxValue) * 100}%`, backgroundColor: props.color }} />
         </div>
     );
 }

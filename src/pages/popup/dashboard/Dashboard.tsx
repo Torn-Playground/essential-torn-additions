@@ -39,7 +39,7 @@ export default function Dashboard() {
             <DashboardLocation />
             <DashboardStatus />
 
-            <section>
+            <section className={styles.barWrapper}>
                 <DashboardBar
                     name="Energy"
                     currentValue={data.energy.current}
@@ -47,6 +47,7 @@ export default function Dashboard() {
                     tickTime={data.energy.ticktime}
                     fullTime={data.energy.fulltime}
                     link="https://www.torn.com/gym.php"
+                    progressColor="#56ad1e"
                 />
             </section>
             <section>
