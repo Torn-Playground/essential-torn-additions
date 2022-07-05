@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Essential Torn Additions",
+  "description": "Features that are deemed essential to play Torn, but not provided natively.",
+  "author": "DeKleineKobini [2114440]",
+  "version": "0.0.1",
+  "background": {
+    "service_worker": "scripts/background/index.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*"
+      ],
+      "js": [
+        "scripts/content/index.ts"
+      ]
+    }
+  ],
+  "permissions": [
+    "alarms", "storage"
+  ],
+  "options_ui": {
+    "page": "pages/settings/settings.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "browser_style": true,
+    "default_icon": {
+      "16": "assets/images/icon_16.png",
+      "32": "assets/images/icon_32.png",
+      "64": "assets/images/icon_64.png"
+    },
+    "default_title": "ETA Popup",
+    "default_popup": "pages/popup/popup.html"
+  },
+  "icons": {
+    "16": "assets/images/icon_16.png",
+    "32": "assets/images/icon_32.png",
+    "64": "assets/images/icon_64.png"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "@parcel/config-default",
+    "@parcel/config-webextension"
+  ],
+  "resolvers": [
+    "...",
+    "parcel-resolver-tspaths"
+  ],
+  "transformers": {
+    "src/*.{ts,tsx}": [
+      "...",
+      "@parcel/transformer-typescript-tsc"
+    ]
+  },
+  "validators": {
+    "src/*.{ts,tsx}": [
+      "...",
+      "@parcel/validator-typescript"
+    ]
+  },
+  "reporters": [
+    "...",
+    "parcel-reporter-clean-dist"
+  ]
+}

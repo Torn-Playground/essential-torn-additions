@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["DOM", "ESNext"],
+    "target": "ES2018",
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["./src/common/*"]
+    },
+    "experimentalDecorators": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+}

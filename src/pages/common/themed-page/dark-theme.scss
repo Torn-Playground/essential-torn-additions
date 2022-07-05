@@ -1,0 +1,20 @@
+@use "theme";
+
+$dark-colors: (
+        primary: #1a8e9c,
+        secondary: #17ab6f,
+        tertiary: #c3d61b,
+
+        background-color: #222,
+        text-color: #eee,
+);
+$dark-theme: (
+        background-color: map-get($dark-colors, background-color),
+        text-color: map-get($dark-colors, text-color),
+        input: (
+                background-color: scale-color(map-get($dark-colors, secondary), $lightness: -40%), // TODO - input color
+                text-color: map-get($dark-colors, text-color),
+        ),
+);
+
+@include theme.themable(dark-theme, $dark-theme);
