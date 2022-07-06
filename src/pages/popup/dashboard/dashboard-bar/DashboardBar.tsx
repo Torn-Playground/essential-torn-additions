@@ -1,6 +1,7 @@
 import { useCountdownTimer } from "../../../utilities/useCountdownTimer";
 import DashboardBarProgress from "./dashboard-bar-progress/DashboardBarProgress";
 import * as styles from "./DashboardBar.module.scss";
+import { useState } from "react";
 
 interface DashboardBarProps {
     name: string;
@@ -12,7 +13,9 @@ interface DashboardBarProps {
     progressColor: string;
 }
 
+// FIXME - rollover
 export default function DashboardBar(props: DashboardBarProps) {
+    const [hover, setHover] = useState(false);
     const { timer: tickTimer } = useCountdownTimer(props.tickTime);
     const { timer: fullTimer, expired: fullExpired } = useCountdownTimer(props.fullTime, true, true);
 
@@ -20,19 +23,21 @@ export default function DashboardBar(props: DashboardBarProps) {
         return fullExpired ? "FULL" : `Full in ${fullTimer}`;
     };
 
-    // FIXME - implement
-    // - design
-    // - on hover full text
     return (
-        <a href={props.link} target="_blank" data-full={getFullText()} className={styles.bar}>
+        <a href={props.link} target="_blank" className={styles.bar} onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>
             <div>
                 <span>{props.name}</span>
-
                 <p className={styles.rightTimer}>
-                    <span>
-                        {props.currentValue}/{props.maxValue}
-                    </span>
-                    <span className={styles.timerMargin}>{tickTimer}</span>
+                    {hover ? (
+                        <strong>{getFullText()}</strong>
+                    ) : (
+                        <>
+                            <span>
+                                {props.currentValue}/{props.maxValue}
+                            </span>
+                            <span className={styles.timerMargin}>{tickTimer}</span>
+                        </>
+                    )}
                 </p>
             </div>
 

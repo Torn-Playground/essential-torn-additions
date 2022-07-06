@@ -19,6 +19,7 @@ export interface UserCooldowns {
 
 export interface UserBars {
     energy: UserBar;
+    nerve: UserBar;
 }
 
 export interface UserBar {

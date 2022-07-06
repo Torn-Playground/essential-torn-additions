@@ -28,5 +28,11 @@ export interface ETAUserdata {
         ticktime: EpochTimeStamp;
         fulltime: EpochTimeStamp | undefined;
     };
+    nerve: {
+        current: number;
+        maximum: number;
+        ticktime: EpochTimeStamp;
+        fulltime: EpochTimeStamp | undefined;
+    };
     lastUpdate: EpochTimeStamp;
 }

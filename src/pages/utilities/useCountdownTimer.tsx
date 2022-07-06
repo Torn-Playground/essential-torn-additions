@@ -20,6 +20,7 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
         if (shouldExist && !intervalId) {
             setTimeout(() => {
                 setIntervalId(setInterval(updateValue, 1000));
+                updateValue();
             }, 1010 - new Date().getUTCMilliseconds());
         } else if (!shouldExist && intervalId) {
             clearInterval(intervalId);
@@ -29,12 +30,21 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
     };
     const updateValue = () => {
         if (typeof value === "undefined") {
+            // TODO - handle none existing timer
             setTimer("-- TODO");
             setExpired(true);
             return;
         }
 
-        const date = new Date(value - Date.now());
+        // FIXME - can't go into - timer
+        const now = Date.now();
+        if (value < now) {
+            setTimer("XXX");
+            setExpired(true);
+            return;
+        }
+
+        const date = new Date(value - now);
 
         const parts: Array<number> = [];
 

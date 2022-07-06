@@ -6,6 +6,7 @@ import DashboardCooldown from "./dashboard-cooldown/DashboardCooldown";
 import LoadingIcon from "../../common/loading-icon/LoadingIcon";
 import * as styles from "./Dashboard.module.scss";
 import DashboardBar from "./dashboard-bar/DashboardBar";
+import DashboardUpdated from "./dashboard-updated/DashboardUpdated";
 
 function DashboardLocation() {
     return <p>Torn</p>; // FIXME - implement
@@ -36,6 +37,7 @@ export default function Dashboard() {
 
     return (
         <>
+            {/* FIXME - Settings link */}
             <DashboardLocation />
             <DashboardStatus />
 
@@ -49,12 +51,33 @@ export default function Dashboard() {
                     link="https://www.torn.com/gym.php"
                     progressColor="#56ad1e"
                 />
+                {/* FIXME - validate color in light theme */}
+                <DashboardBar
+                    name="Nerve"
+                    currentValue={data.nerve.current}
+                    maxValue={data.nerve.maximum}
+                    tickTime={data.nerve.ticktime}
+                    fullTime={data.nerve.fulltime}
+                    link="https://www.torn.com/crimes.php"
+                    progressColor="#cc4b2d"
+                />
+                {/* FIXME - Happy bar */}
+                {/* FIXME - Life bar */}
+                {/* FIXME - Chain bar */}
+                {/* FIXME - Travel bar */}
             </section>
             <section>
                 <DashboardCooldown name="Drugs" cooldown={data.cooldowns.drug} />
                 <DashboardCooldown name="Boosters" cooldown={data.cooldowns.booster} />
                 <DashboardCooldown name="Medical" cooldown={data.cooldowns.medical} />
             </section>
+
+            {/* FIXME - event count */}
+            {/* FIXME - message count */}
+            {/* FIXME - money on hand */}
+
+            {/* FIXME - last update timer (with update on click) */}
+            <DashboardUpdated value={data.lastUpdate} />
         </>
-    ); // FIXME - Include the dashboard.
+    );
 }

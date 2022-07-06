@@ -18,8 +18,18 @@ export async function updateUserdata() {
             ticktime: getTimestampFromSeconds(timestamp, userdata.energy.ticktime) as EpochTimeStamp,
             fulltime: getTimestampFromSeconds(timestamp, userdata.energy.fulltime),
         },
-        lastUpdate: timestamp,
+        nerve: {
+            current: userdata.nerve.current,
+            maximum: userdata.nerve.maximum,
+            ticktime: getTimestampFromSeconds(timestamp, userdata.nerve.ticktime) as EpochTimeStamp,
+            fulltime: getTimestampFromSeconds(timestamp, userdata.nerve.fulltime),
+        },
+        lastUpdate: getTimestamp(timestamp),
     });
+}
+
+function getTimestamp(timestamp: number): EpochTimeStamp {
+    return timestamp * 1000;
 }
 
 function getTimestampFromSeconds(timestamp: number, cooldown: number): EpochTimeStamp | undefined {
