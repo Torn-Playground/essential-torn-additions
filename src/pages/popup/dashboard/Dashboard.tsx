@@ -48,16 +48,19 @@ export default function Dashboard() {
                     maxValue={data.energy.maximum}
                     tickTime={data.energy.ticktime}
                     fullTime={data.energy.fulltime}
+                    interval={data.energy.interval}
+                    increment={data.energy.increment}
                     link="https://www.torn.com/gym.php"
                     progressColor="#56ad1e"
                 />
-                {/* FIXME - validate color in light theme */}
                 <DashboardBar
                     name="Nerve"
                     currentValue={data.nerve.current}
                     maxValue={data.nerve.maximum}
                     tickTime={data.nerve.ticktime}
                     fullTime={data.nerve.fulltime}
+                    interval={data.nerve.interval}
+                    increment={data.nerve.increment}
                     link="https://www.torn.com/crimes.php"
                     progressColor="#cc4b2d"
                 />
@@ -76,7 +79,6 @@ export default function Dashboard() {
             {/* FIXME - message count */}
             {/* FIXME - money on hand */}
 
-            {/* FIXME - last update timer (with update on click) */}
             <DashboardUpdated value={data.lastUpdate} />
         </>
     );

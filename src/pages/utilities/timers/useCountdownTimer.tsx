@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { toMultipleDigits } from "@common/utilities";
+import { useInterval } from "../useInterval";
 
 type CountdownTimerValue = EpochTimeStamp | undefined;
 
@@ -9,37 +10,21 @@ interface CountdownTimerResult {
 }
 
 function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, showHours: boolean): CountdownTimerResult {
-    const [intervalId, setIntervalId] = useState<number>();
-
     const [timer, setTimer] = useState("");
     const [expired, setExpired] = useState(false);
 
-    const registerInterval = () => {
-        const shouldExist = !!value;
-
-        if (shouldExist && !intervalId) {
-            setTimeout(() => {
-                setIntervalId(setInterval(updateValue, 1000));
-                updateValue();
-            }, 1010 - new Date().getUTCMilliseconds());
-        } else if (!shouldExist && intervalId) {
-            clearInterval(intervalId);
-            setIntervalId(undefined);
-        }
-        updateValue();
-    };
     const updateValue = () => {
         if (typeof value === "undefined") {
             // TODO - handle none existing timer
-            setTimer("-- TODO");
+            setTimer("-- TODO (undefined)");
             setExpired(true);
             return;
         }
 
-        // FIXME - can't go into - timer
         const now = Date.now();
         if (value < now) {
-            setTimer("XXX");
+            // TODO - handle value < now
+            setTimer("-- TODO (value < now)");
             setExpired(true);
             return;
         }
@@ -57,18 +42,14 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
         setExpired(false);
     };
 
-    useEffect(() => {
-        registerInterval();
-
-        return () => clearInterval(intervalId);
-    }, []);
-    useEffect(registerInterval, [value]);
+    useEffect(updateValue, []);
+    useEffect(updateValue, [value]);
+    useInterval(updateValue, 1000);
 
     return { timer, expired };
 }
 
 export function useCountdownTimer(value: CountdownTimerValue): CountdownTimerResult;
-export function useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean): CountdownTimerResult;
 export function useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, showHours: boolean): CountdownTimerResult;
 export function useCountdownTimer(value: CountdownTimerValue, showSeconds?: boolean, showHours?: boolean): CountdownTimerResult {
     return _useCountdownTimer(value, showSeconds ?? true, showHours ?? false);

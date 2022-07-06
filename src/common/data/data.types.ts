@@ -22,17 +22,16 @@ export interface ETAUserdata {
         booster: EpochTimeStamp | undefined;
         medical: EpochTimeStamp | undefined;
     };
-    energy: {
-        current: number;
-        maximum: number;
-        ticktime: EpochTimeStamp;
-        fulltime: EpochTimeStamp | undefined;
-    };
-    nerve: {
-        current: number;
-        maximum: number;
-        ticktime: EpochTimeStamp;
-        fulltime: EpochTimeStamp | undefined;
-    };
+    energy: BarData;
+    nerve: BarData;
     lastUpdate: EpochTimeStamp;
+}
+
+export interface BarData {
+    current: number;
+    maximum: number;
+    ticktime: EpochTimeStamp;
+    fulltime: EpochTimeStamp | undefined;
+    interval: number;
+    increment: number;
 }

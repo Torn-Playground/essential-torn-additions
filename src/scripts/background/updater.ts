@@ -1,7 +1,8 @@
 import { fetchData } from "@common/api";
 import { dataBucket } from "@common/data/data";
-import { UserBars, UserCooldowns } from "@common/api/user.types";
+import { UserBar, UserBars, UserCooldowns } from "@common/api/user.types";
 import { ApiTimestamp } from "@common/api/api.types";
+import { BarData } from "@common/data/data.types";
 
 export async function updateUserdata() {
     const { timestamp, cooldowns, ...userdata } = await fetchData<ApiTimestamp & UserCooldowns & UserBars>("user", ["timestamp", "cooldowns", "bars"]);
@@ -12,18 +13,8 @@ export async function updateUserdata() {
             booster: getTimestampFromSeconds(timestamp, cooldowns.booster),
             medical: getTimestampFromSeconds(timestamp, cooldowns.medical),
         },
-        energy: {
-            current: userdata.energy.current,
-            maximum: userdata.energy.maximum,
-            ticktime: getTimestampFromSeconds(timestamp, userdata.energy.ticktime) as EpochTimeStamp,
-            fulltime: getTimestampFromSeconds(timestamp, userdata.energy.fulltime),
-        },
-        nerve: {
-            current: userdata.nerve.current,
-            maximum: userdata.nerve.maximum,
-            ticktime: getTimestampFromSeconds(timestamp, userdata.nerve.ticktime) as EpochTimeStamp,
-            fulltime: getTimestampFromSeconds(timestamp, userdata.nerve.fulltime),
-        },
+        energy: getBarData(userdata.energy, timestamp),
+        nerve: getBarData(userdata.nerve, timestamp),
         lastUpdate: getTimestamp(timestamp),
     });
 }
@@ -38,4 +29,15 @@ function getTimestampFromSeconds(timestamp: number, cooldown: number): EpochTime
     }
 
     return (timestamp + cooldown) * 1000;
+}
+
+function getBarData(bar: UserBar, timestamp: EpochTimeStamp): BarData {
+    return {
+        current: bar.current,
+        maximum: bar.maximum,
+        ticktime: getTimestampFromSeconds(timestamp, bar.ticktime) as EpochTimeStamp,
+        fulltime: getTimestampFromSeconds(timestamp, bar.fulltime),
+        interval: bar.interval,
+        increment: bar.increment,
+    };
 }

@@ -25,6 +25,7 @@ export interface UserBars {
 export interface UserBar {
     current: number;
     maximum: number;
+    increment: number;
     /**
      * Seconds till the next tick.
      */
@@ -33,4 +34,8 @@ export interface UserBar {
      * Seconds till the bar is completely full.
      */
     fulltime: number;
+    /**
+     * Seconds between tick times.
+     */
+    interval: number;
 }
