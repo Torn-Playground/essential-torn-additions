@@ -1,5 +1,5 @@
 import * as styles from "./DashboardBarInfo.module.scss";
-import { useCountdownTimer } from "../../../../utilities/timers/useCountdownTimer";
+import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
 
 interface DashboardBarInfoProps {
     hover: boolean;

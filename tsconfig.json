@@ -6,7 +6,10 @@
     "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
-      "@common/*": ["./src/common/*"]
+      "@common/*": ["./src/common/*"],
+      "@scripts/*": ["./src/scripts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@utilities/*": ["./src/utilities/*"]
     },
     "experimentalDecorators": true,
     "jsx": "react-jsx",

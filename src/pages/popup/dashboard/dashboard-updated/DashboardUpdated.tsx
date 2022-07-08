@@ -1,22 +1,16 @@
-import { useDistanceTimer } from "../../../utilities/timers/useDistanceTimer";
-import { useEffect } from "react";
+import { useDistanceTimer } from "@pages/utilities/timers/useDistanceTimer";
+import { updateUserdata } from "@scripts/background/updater";
+import * as styles from "./DashboardUpdated.module.scss";
 
 interface DashboardUpdatedProps {
     value: EpochTimeStamp;
 }
 
-{
-    /* FIXME - update on click */
-}
 export default function DashboardUpdated(props: DashboardUpdatedProps) {
     const { timer } = useDistanceTimer(props.value);
 
-    useEffect(() => {
-        console.log("props changed", props.value);
-    }, [props.value]);
-
     return (
-        <p>
+        <p onClick={updateUserdata} className={styles.updateTime}>
             Updated <strong>{timer}</strong>
         </p>
     );
