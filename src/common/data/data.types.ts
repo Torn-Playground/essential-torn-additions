@@ -24,6 +24,8 @@ export interface ETAUserdata {
     };
     energy: BarData;
     nerve: BarData;
+    happy: BarData;
+    life: BarData;
     lastUpdate: EpochTimeStamp;
 }
 

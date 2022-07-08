@@ -42,30 +42,10 @@ export default function Dashboard() {
             <DashboardStatus />
 
             <section className={styles.barWrapper}>
-                <DashboardBar
-                    name="Energy"
-                    currentValue={data.energy.current}
-                    maxValue={data.energy.maximum}
-                    tickTime={data.energy.ticktime}
-                    fullTime={data.energy.fulltime}
-                    interval={data.energy.interval}
-                    increment={data.energy.increment}
-                    link="https://www.torn.com/gym.php"
-                    progressColor="#56ad1e"
-                />
-                <DashboardBar
-                    name="Nerve"
-                    currentValue={data.nerve.current}
-                    maxValue={data.nerve.maximum}
-                    tickTime={data.nerve.ticktime}
-                    fullTime={data.nerve.fulltime}
-                    interval={data.nerve.interval}
-                    increment={data.nerve.increment}
-                    link="https://www.torn.com/crimes.php"
-                    progressColor="#cc4b2d"
-                />
-                {/* FIXME - Happy bar */}
-                {/* FIXME - Life bar */}
+                <DashboardBar name="Energy" bar={data.energy} link="https://www.torn.com/gym.php" progressColor="#56ad1e" />
+                <DashboardBar name="Nerve" bar={data.nerve} link="https://www.torn.com/crimes.php" progressColor="#cc4b2d" />
+                <DashboardBar name="Happy" bar={data.happy} link="https://www.torn.com/properties.php" progressColor="#ccb62a" />
+                <DashboardBar name="Life" bar={data.life} link="https://www.torn.com/item.php#medical-items" progressColor="#3f43cf" />
                 {/* FIXME - Chain bar */}
                 {/* FIXME - Travel bar */}
             </section>

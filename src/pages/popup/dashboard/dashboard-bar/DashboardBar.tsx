@@ -3,15 +3,11 @@ import DashboardBarInfo from "./dashboard-bar-info/DashboardBarInfo";
 import * as styles from "./DashboardBar.module.scss";
 import { useEffect, useState } from "react";
 import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
+import { BarData } from "@common/data/data.types";
 
 interface DashboardBarProps {
     name: string;
-    currentValue: number;
-    maxValue: number;
-    tickTime: EpochTimeStamp;
-    fullTime: EpochTimeStamp | undefined;
-    interval: number;
-    increment: number;
+    bar: BarData;
     link: string;
     progressColor: string;
 }
@@ -19,19 +15,19 @@ interface DashboardBarProps {
 export default function DashboardBar(props: DashboardBarProps) {
     const [hover, setHover] = useState(false);
 
-    const [tickTime, setTickTime] = useState(props.tickTime);
-    const [currentValue, setCurrentValue] = useState(props.currentValue);
+    const [tickTime, setTickTime] = useState(props.bar.ticktime);
+    const [currentValue, setCurrentValue] = useState(props.bar.current);
 
-    useEffect(() => setTickTime(props.tickTime), [props.tickTime]);
-    useEffect(() => setCurrentValue(props.currentValue), [props.currentValue]);
+    useEffect(() => setTickTime(props.bar.ticktime), [props.bar.ticktime]);
+    useEffect(() => setCurrentValue(props.bar.current), [props.bar.current]);
 
-    const { expired } = useCountdownTimer(props.tickTime);
+    const { expired } = useCountdownTimer(props.bar.ticktime);
 
     useEffect(() => {
         if (!expired) return;
 
-        setTickTime((tickTime) => tickTime + props.interval * 1000);
-        setCurrentValue((currentValue) => currentValue + props.increment);
+        setTickTime((tickTime) => tickTime + props.bar.interval * 1000);
+        setCurrentValue((currentValue) => currentValue + props.bar.increment);
     }, [expired]);
 
     return (
@@ -40,12 +36,12 @@ export default function DashboardBar(props: DashboardBarProps) {
                 hover={hover}
                 name={props.name}
                 currentValue={currentValue}
-                maxValue={props.maxValue}
+                maxValue={props.bar.maximum}
                 tickTime={tickTime}
-                fullTime={props.fullTime}
+                fullTime={props.bar.fulltime}
                 progressColor={props.progressColor}
             />
-            <DashboardBarProgress currentValue={props.currentValue} maxValue={props.maxValue} color={props.progressColor} />
+            <DashboardBarProgress currentValue={props.bar.current} maxValue={props.bar.maximum} color={props.progressColor} />
         </a>
     );
 }

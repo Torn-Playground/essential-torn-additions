@@ -15,6 +15,8 @@ export async function updateUserdata() {
         },
         energy: getBarData(userdata.energy, timestamp),
         nerve: getBarData(userdata.nerve, timestamp),
+        happy: getBarData(userdata.happy, timestamp),
+        life: getBarData(userdata.life, timestamp),
         lastUpdate: getTimestamp(timestamp),
     });
 }
