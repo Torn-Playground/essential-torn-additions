@@ -58,10 +58,10 @@ export default function Dashboard() {
                     />
                 ) : undefined}
             </section>
-            <section>
-                <DashboardCooldown name="Drugs" cooldown={data.cooldowns.drug} />
-                <DashboardCooldown name="Boosters" cooldown={data.cooldowns.booster} />
-                <DashboardCooldown name="Medical" cooldown={data.cooldowns.medical} />
+            <section className={styles.cooldownWrapper}>
+                <DashboardCooldown name="Drugs" cooldown={data.cooldowns.drug} link="https://www.torn.com/item.php#drugs-items" color="#32b72e" />
+                <DashboardCooldown name="Boosters" cooldown={data.cooldowns.booster} link="https://www.torn.com/item.php#boosters-items" color="#f17827" />
+                <DashboardCooldown name="Medical" cooldown={data.cooldowns.medical} link="https://www.torn.com/item.php#medical-items" color="#5783fd" />
             </section>
 
             {/* FIXME - event count */}

@@ -1,14 +1,20 @@
+import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
+import * as styles from "./DashboardCooldown.module.scss";
+
 interface DashboardCooldownProps {
     name: string;
     cooldown: EpochTimeStamp | undefined;
+    link: string;
+    color: string;
 }
 
 export default function DashboardCooldown(props: DashboardCooldownProps) {
-    // FIXME - implement (https://reactjs.org/docs/state-and-lifecycle.html)
+    const { timer } = useCountdownTimer(props.cooldown, true, true);
+
     return (
-        <div style={{ outline: "1px solid white" }}>
-            <p>{props.name}</p>
-            <p>{props.cooldown}</p>
-        </div>
+        <a href={props.link} target="_blank" className={styles.cooldown}>
+            <strong style={{ color: props.color }}>{props.name}</strong>
+            <span className={styles.timerText}>{timer}</span>
+        </a>
     );
 }

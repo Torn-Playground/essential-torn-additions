@@ -14,29 +14,31 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
     const [expired, setExpired] = useState(false);
 
     const updateValue = () => {
-        if (typeof value === "undefined") {
-            // TODO - handle none existing timer
-            setTimer("-- TODO (undefined)");
-            setExpired(true);
-            return;
-        }
+        const parts: Array<number> = [];
 
         const now = Date.now();
-        if (value < now) {
+        let hours: number, minutes: number, seconds: number;
+        if (typeof value === "undefined") {
+            hours = 0;
+            minutes = 0;
+            seconds = 0;
+        } else if (value < now) {
             // TODO - handle value < now
             setTimer("-- TODO (value < now)");
             setExpired(true);
             return;
+        } else {
+            const date = new Date(value - now);
+
+            hours = date.getUTCHours();
+            minutes = date.getUTCMinutes();
+            seconds = date.getUTCSeconds();
         }
 
-        const date = new Date(value - now);
-
-        const parts: Array<number> = [];
-
         // TODO - days
-        if (showHours) parts.push(date.getUTCHours());
-        parts.push(date.getUTCMinutes());
-        if (showSeconds) parts.push(date.getUTCSeconds());
+        if (showHours) parts.push(hours);
+        parts.push(minutes);
+        if (showSeconds) parts.push(seconds);
 
         setTimer(parts.map((p) => toMultipleDigits(p)).join(":"));
         setExpired(false);
