@@ -9,14 +9,7 @@ import DashboardBar from "./dashboard-bar/DashboardBar";
 import DashboardUpdated from "./dashboard-updated/DashboardUpdated";
 import DashboardTravelBar from "@pages/popup/dashboard/dashboard-bar/DashboardTravelBar";
 import DashboardIndicators from "@pages/popup/dashboard/dashboard-indicators/DashboardIndicators";
-
-function DashboardLocation() {
-    return <p>Torn</p>; // FIXME - implement
-}
-
-function DashboardStatus() {
-    return <p>Okay</p>; // FIXME - implement
-}
+import DashboardStatus from "@pages/popup/dashboard/dashboard-status/DashboardStatus";
 
 export default function Dashboard() {
     const { data, loading, error } = useData(dataBucket, true);
@@ -40,8 +33,7 @@ export default function Dashboard() {
     return (
         <>
             {/* FIXME - Settings link */}
-            <DashboardLocation />
-            <DashboardStatus />
+            <DashboardStatus data={data} />
 
             <section className={styles.barWrapper}>
                 <DashboardBar name="Energy" bar={data.energy} link="https://www.torn.com/gym.php" progressColor="#56ad1e" />

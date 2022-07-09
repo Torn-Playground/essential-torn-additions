@@ -1,13 +1,23 @@
 import { fetchData } from "@common/api";
 import { dataBucket } from "@common/data/data";
-import { UserBar, UserBars, UserCooldowns, UserNewEvent, UserNewEvents, UserNewMessage, UserNewMessages, UserTravel } from "@common/api/user.types";
+import {
+    UserBar,
+    UserBars,
+    UserCooldowns,
+    UserNewEvent,
+    UserNewEvents,
+    UserNewMessage,
+    UserNewMessages,
+    UserProfile,
+    UserTravel,
+} from "@common/api/user.types";
 import { ApiTimestamp } from "@common/api/api.types";
 import { BarData } from "@common/data/data.types";
 
 export async function updateUserdata() {
     const { timestamp, cooldowns, travel, events, messages, ...userdata } = await fetchData<
-        ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages
-    >("user", ["timestamp", "cooldowns", "bars", "travel", "newevents", "newmessages"]);
+        ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages & UserProfile
+    >("user", ["timestamp", "profile", "cooldowns", "bars", "travel", "newevents", "newmessages"]);
 
     await dataBucket.set({
         cooldowns: {
@@ -28,10 +38,22 @@ export async function updateUserdata() {
         },
         newEvents: convertEvents(events),
         newMessages: convertMessages(messages),
+        status: {
+            description: userdata.status.description,
+            state: userdata.status.state,
+            color: userdata.status.color,
+            until: getOptionalTimestamp(userdata.status.until),
+        },
     });
 }
 
 function getTimestamp(timestamp: number): EpochTimeStamp {
+    return timestamp * 1000;
+}
+
+function getOptionalTimestamp(timestamp: number): EpochTimeStamp | undefined {
+    if (timestamp === 0) return undefined;
+
     return timestamp * 1000;
 }
 

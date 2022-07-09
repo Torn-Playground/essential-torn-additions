@@ -1,4 +1,4 @@
-export type UserSelection = "cooldowns" | "bars" | "travel" | "newevents" | "newmessages";
+export type UserSelection = "cooldowns" | "bars" | "travel" | "newevents" | "newmessages" | "profile";
 
 export interface UserCooldowns {
     cooldowns: {
@@ -44,7 +44,7 @@ export interface UserBar {
 
 export interface UserTravel {
     travel: {
-        destination: String;
+        destination: string;
         timestamp: number;
         departed: number;
         time_left: number;
@@ -77,4 +77,13 @@ export interface UserNewMessage {
     title: string;
     seen: 0 | 1;
     read: 0 | 1;
+}
+
+export interface UserProfile {
+    status: {
+        description: string;
+        state: string;
+        color: string;
+        until: number;
+    };
 }

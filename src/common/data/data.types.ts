@@ -28,13 +28,19 @@ export interface ETAUserdata {
     life: BarData;
     lastUpdate: EpochTimeStamp;
     travel: {
-        destination: String;
+        destination: string;
         timestamp: EpochTimeStamp;
         departed: EpochTimeStamp;
         timeLeft: number | undefined;
     };
     newEvents: Array<{ event: string }>;
     newMessages: Array<{ title: string }>;
+    status: {
+        description: string;
+        state: string;
+        color: string;
+        until: EpochTimeStamp | undefined;
+    };
 }
 
 export interface BarData {
