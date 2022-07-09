@@ -22,9 +22,12 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
             hours = 0;
             minutes = 0;
             seconds = 0;
+
+            setExpired(true);
         } else if (value < now) {
             // TODO - handle value < now
             setTimer("-- TODO (value < now)");
+
             setExpired(true);
             return;
         } else {
@@ -33,6 +36,8 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
             hours = date.getUTCHours();
             minutes = date.getUTCMinutes();
             seconds = date.getUTCSeconds();
+
+            setExpired(false);
         }
 
         // TODO - days
@@ -41,7 +46,6 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
         if (showSeconds) parts.push(seconds);
 
         setTimer(parts.map((p) => toMultipleDigits(p)).join(":"));
-        setExpired(false);
     };
 
     useEffect(updateValue, []);
