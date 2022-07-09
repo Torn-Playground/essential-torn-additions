@@ -22,14 +22,16 @@ export default function DashboardBar(props: DashboardBarProps) {
     useEffect(() => setTickTime(props.bar.ticktime), [props.bar.ticktime]);
     useEffect(() => setCurrentValue(props.bar.current), [props.bar.current]);
 
-    const { expired } = useCountdownTimer(props.bar.ticktime);
+    const { expired } = useCountdownTimer(tickTime);
 
     useEffect(() => {
         if (!expired) return;
 
-        setTickTime((tickTime) => tickTime + props.bar.interval * 1000);
+        const timesOff = Math.ceil((Date.now() - tickTime) / (props.bar.interval * 1000));
+
+        setTickTime((tickTime) => tickTime + props.bar.interval * 1000 * timesOff);
         setCurrentValue((currentValue) => {
-            const newValue = currentValue + props.bar.increment;
+            const newValue = currentValue + props.bar.increment * timesOff;
 
             if (newValue > props.bar.maximum) {
                 if (props.resetWhenOver) {
