@@ -24,6 +24,5 @@ export default function DashboardStatusState(props: DashboardStatusStateProps) {
         }
     }, [props.color]);
 
-    // FIXME - implement
     return <h3 className={colorClass}>{props.state}</h3>;
 }
