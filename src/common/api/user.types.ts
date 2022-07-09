@@ -50,3 +50,31 @@ export interface UserTravel {
         time_left: number;
     };
 }
+
+export interface UserNewEvents {
+    events: {
+        [id: string]: UserNewEvent;
+    };
+}
+
+export interface UserNewEvent {
+    timestamp: number;
+    event: string;
+    seen: 0 | 1;
+}
+
+export interface UserNewMessages {
+    messages: {
+        [id: string]: UserNewMessage;
+    };
+}
+
+export interface UserNewMessage {
+    timestamp: number;
+    ID: number;
+    name: string;
+    type: string;
+    title: string;
+    seen: 0 | 1;
+    read: 0 | 1;
+}

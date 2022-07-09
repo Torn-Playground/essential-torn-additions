@@ -8,6 +8,7 @@ import * as styles from "./Dashboard.module.scss";
 import DashboardBar from "./dashboard-bar/DashboardBar";
 import DashboardUpdated from "./dashboard-updated/DashboardUpdated";
 import DashboardTravelBar from "@pages/popup/dashboard/dashboard-bar/DashboardTravelBar";
+import DashboardIndicators from "@pages/popup/dashboard/dashboard-indicators/DashboardIndicators";
 
 function DashboardLocation() {
     return <p>Torn</p>; // FIXME - implement
@@ -64,9 +65,7 @@ export default function Dashboard() {
                 <DashboardCooldown name="Medical" cooldown={data.cooldowns.medical} link="https://www.torn.com/item.php#medical-items" color="#5783fd" />
             </section>
 
-            {/* FIXME - event count */}
-            {/* FIXME - message count */}
-            {/* FIXME - money on hand */}
+            <DashboardIndicators data={data} />
 
             <DashboardUpdated value={data.lastUpdate} />
         </>

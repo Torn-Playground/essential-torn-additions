@@ -33,6 +33,8 @@ export interface ETAUserdata {
         departed: EpochTimeStamp;
         timeLeft: number | undefined;
     };
+    newEvents: Array<{ event: string }>;
+    newMessages: Array<{ title: string }>;
 }
 
 export interface BarData {

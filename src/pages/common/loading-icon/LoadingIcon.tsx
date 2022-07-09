@@ -8,11 +8,11 @@ interface LoadingIconProps {
 export default function LoadingIcon(props: LoadingIconProps) {
     const getColor = (theme: Theme) => {
         switch (theme) {
-            case Theme.DARK:
-                return "white";
             case Theme.LIGHT:
-            default:
                 return "black";
+            case Theme.DARK:
+            default:
+                return "white";
         }
     };
 

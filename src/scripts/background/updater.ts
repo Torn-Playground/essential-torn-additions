@@ -1,16 +1,13 @@
 import { fetchData } from "@common/api";
 import { dataBucket } from "@common/data/data";
-import { UserBar, UserBars, UserCooldowns, UserTravel } from "@common/api/user.types";
+import { UserBar, UserBars, UserCooldowns, UserNewEvent, UserNewEvents, UserNewMessage, UserNewMessages, UserTravel } from "@common/api/user.types";
 import { ApiTimestamp } from "@common/api/api.types";
 import { BarData } from "@common/data/data.types";
 
 export async function updateUserdata() {
-    const { timestamp, cooldowns, travel, ...userdata } = await fetchData<ApiTimestamp & UserCooldowns & UserBars & UserTravel>("user", [
-        "timestamp",
-        "cooldowns",
-        "bars",
-        "travel",
-    ]);
+    const { timestamp, cooldowns, travel, events, messages, ...userdata } = await fetchData<
+        ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages
+    >("user", ["timestamp", "cooldowns", "bars", "travel", "newevents", "newmessages"]);
 
     await dataBucket.set({
         cooldowns: {
@@ -29,6 +26,8 @@ export async function updateUserdata() {
             departed: getTimestamp(travel.departed),
             timeLeft: travel.time_left > 0 ? travel.time_left : undefined,
         },
+        newEvents: convertEvents(events),
+        newMessages: convertMessages(messages),
     });
 }
 
@@ -53,4 +52,16 @@ function getBarData(bar: UserBar, timestamp: EpochTimeStamp): BarData {
         interval: bar.interval,
         increment: bar.increment,
     };
+}
+
+function convertEvents(events: { [id: string]: UserNewEvent }): { event: string }[] {
+    return Object.entries(events).map(([, value]) => {
+        return { event: value.event };
+    });
+}
+
+function convertMessages(messages: { [id: string]: UserNewMessage }): { title: string }[] {
+    return Object.entries(messages).map(([, value]) => {
+        return { title: value.title };
+    });
 }
