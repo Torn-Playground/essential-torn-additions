@@ -19,7 +19,11 @@ export function useInterval(callback: Function, delay: number) {
         }
 
         if (delay !== null) {
-            let id = setInterval(tick, delay);
+            let id: number;
+            setTimeout(() => {
+                id = setInterval(tick, delay);
+            }, 1000 - (Date.now() % 1000));
+
             return () => clearInterval(id);
         }
     }, [delay]);
