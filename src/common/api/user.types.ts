@@ -22,6 +22,12 @@ export interface UserBars {
     nerve: UserBar;
     happy: UserBar;
     life: UserBar;
+    chain: {
+        current: number;
+        maximum: number;
+        timeout: number;
+        cooldown: number;
+    };
 }
 
 export interface UserBar {

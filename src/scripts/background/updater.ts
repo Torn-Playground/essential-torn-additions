@@ -21,9 +21,9 @@ export async function updateUserdata() {
 
     await dataBucket.set({
         cooldowns: {
-            drug: getTimestampFromSeconds(timestamp, cooldowns.drug),
-            booster: getTimestampFromSeconds(timestamp, cooldowns.booster),
-            medical: getTimestampFromSeconds(timestamp, cooldowns.medical),
+            drug: getOptionalTimestampFromSeconds(timestamp, cooldowns.drug),
+            booster: getOptionalTimestampFromSeconds(timestamp, cooldowns.booster),
+            medical: getOptionalTimestampFromSeconds(timestamp, cooldowns.medical),
         },
         energy: getBarData(userdata.energy, timestamp),
         nerve: getBarData(userdata.nerve, timestamp),
@@ -44,6 +44,12 @@ export async function updateUserdata() {
             color: userdata.status.color,
             until: getOptionalTimestamp(userdata.status.until),
         },
+        chain: {
+            current: userdata.chain.current,
+            maximum: userdata.chain.maximum,
+            timeout: getOptionalTimestampFromSeconds(timestamp, userdata.chain.timeout),
+            cooldown: userdata.chain.cooldown,
+        },
     });
 }
 
@@ -57,7 +63,11 @@ function getOptionalTimestamp(timestamp: number): EpochTimeStamp | undefined {
     return timestamp * 1000;
 }
 
-function getTimestampFromSeconds(timestamp: number, cooldown: number): EpochTimeStamp | undefined {
+function getTimestampFromSeconds(timestamp: number, cooldown: number): EpochTimeStamp {
+    return (timestamp + cooldown) * 1000;
+}
+
+function getOptionalTimestampFromSeconds(timestamp: number, cooldown: number): EpochTimeStamp | undefined {
     if (cooldown === 0) {
         return undefined;
     }

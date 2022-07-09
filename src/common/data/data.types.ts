@@ -41,6 +41,12 @@ export interface ETAUserdata {
         color: string;
         until: EpochTimeStamp | undefined;
     };
+    chain: {
+        current: number;
+        maximum: number;
+        timeout: EpochTimeStamp | undefined;
+        cooldown: number;
+    };
 }
 
 export interface BarData {
