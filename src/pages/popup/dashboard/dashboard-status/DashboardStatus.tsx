@@ -12,7 +12,11 @@ export default function DashboardStatus(props: DashboardStatusProps) {
     const { timer: statusTimer, expired: statusExpired } = useCountdownTimer(props.data.status.until, true, true);
 
     if (!travelExpired) {
-        return <DashboardStatusCountry destination={`Travelling to ${props.data.travel.destination}`} />;
+        return (
+            <div>
+                <DashboardStatusCountry destination={`Travelling to ${props.data.travel.destination}`} />
+            </div>
+        );
     } else if (!statusExpired) {
         let statusText: string, statusColor: string;
         switch (props.data.status.state.toLowerCase()) {
@@ -31,17 +35,17 @@ export default function DashboardStatus(props: DashboardStatusProps) {
         }
 
         return (
-            <>
+            <div>
                 <DashboardStatusCountry destination={props.data.travel.destination} />
                 <DashboardStatusState state={`${statusText} for ${statusTimer}`} color={statusColor} />
-            </>
+            </div>
         );
     } else {
         return (
-            <>
+            <div>
                 <DashboardStatusCountry destination={props.data.travel.destination} />
                 <DashboardStatusState state={props.data.status.state} color={props.data.status.color} />
-            </>
+            </div>
         );
     }
 }

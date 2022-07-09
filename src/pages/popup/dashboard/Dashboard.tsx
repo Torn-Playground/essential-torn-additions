@@ -12,6 +12,7 @@ import DashboardIndicators from "@pages/popup/dashboard/dashboard-indicators/Das
 import DashboardStatus from "@pages/popup/dashboard/dashboard-status/DashboardStatus";
 import DashboardChainBar from "@pages/popup/dashboard/dashboard-bar/DashboardChainBar";
 import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
+import DashboardSettingsLink from "@pages/popup/dashboard/dashboard-settings-link/DashboardSettingsLink";
 
 export default function Dashboard() {
     const { data, loading, error } = useData(dataBucket, true);
@@ -36,8 +37,11 @@ export default function Dashboard() {
 
     return (
         <>
-            {/* FIXME - Settings link */}
-            <DashboardStatus data={data} />
+            <section className={styles.titleWrapper}>
+                <DashboardStatus data={data} />
+
+                <DashboardSettingsLink />
+            </section>
 
             <section className={styles.barWrapper}>
                 <DashboardBar name="Energy" bar={data.energy} link="https://www.torn.com/gym.php" progressColor="#56ad1e" />
