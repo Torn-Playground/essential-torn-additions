@@ -1,4 +1,4 @@
-export type UserSelection = "cooldowns" | "bars";
+export type UserSelection = "cooldowns" | "bars" | "travel" | "newevents" | "newmessages";
 
 export interface UserCooldowns {
     cooldowns: {
@@ -40,4 +40,13 @@ export interface UserBar {
      * Seconds between tick times.
      */
     interval: number;
+}
+
+export interface UserTravel {
+    travel: {
+        destination: String;
+        timestamp: number;
+        departed: number;
+        time_left: number;
+    };
 }

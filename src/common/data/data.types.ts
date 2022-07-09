@@ -27,6 +27,12 @@ export interface ETAUserdata {
     happy: BarData;
     life: BarData;
     lastUpdate: EpochTimeStamp;
+    travel: {
+        destination: String;
+        timestamp: EpochTimeStamp;
+        departed: EpochTimeStamp;
+        timeLeft: number | undefined;
+    };
 }
 
 export interface BarData {

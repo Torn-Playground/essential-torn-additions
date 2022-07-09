@@ -7,6 +7,7 @@ import LoadingIcon from "../../common/loading-icon/LoadingIcon";
 import * as styles from "./Dashboard.module.scss";
 import DashboardBar from "./dashboard-bar/DashboardBar";
 import DashboardUpdated from "./dashboard-updated/DashboardUpdated";
+import DashboardTravelBar from "@pages/popup/dashboard/dashboard-bar/DashboardTravelBar";
 
 function DashboardLocation() {
     return <p>Torn</p>; // FIXME - implement
@@ -47,7 +48,15 @@ export default function Dashboard() {
                 <DashboardBar name="Happy" bar={data.happy} link="https://www.torn.com/properties.php" progressColor="#ccb62a" resetWhenOver={true} />
                 <DashboardBar name="Life" bar={data.life} link="https://www.torn.com/item.php#medical-items" progressColor="#3f43cf" />
                 {/* FIXME - Chain bar */}
-                {/* FIXME - Travel bar */}
+                {typeof data.travel.timeLeft !== "undefined" ? (
+                    <DashboardTravelBar
+                        name="Travelling"
+                        landingAt={data.travel.timestamp}
+                        departedAt={data.travel.departed}
+                        link="https://www.torn.com/index.php"
+                        progressColor="#cf62be"
+                    />
+                ) : undefined}
             </section>
             <section>
                 <DashboardCooldown name="Drugs" cooldown={data.cooldowns.drug} />

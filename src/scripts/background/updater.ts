@@ -1,11 +1,16 @@
 import { fetchData } from "@common/api";
 import { dataBucket } from "@common/data/data";
-import { UserBar, UserBars, UserCooldowns } from "@common/api/user.types";
+import { UserBar, UserBars, UserCooldowns, UserTravel } from "@common/api/user.types";
 import { ApiTimestamp } from "@common/api/api.types";
 import { BarData } from "@common/data/data.types";
 
 export async function updateUserdata() {
-    const { timestamp, cooldowns, ...userdata } = await fetchData<ApiTimestamp & UserCooldowns & UserBars>("user", ["timestamp", "cooldowns", "bars"]);
+    const { timestamp, cooldowns, travel, ...userdata } = await fetchData<ApiTimestamp & UserCooldowns & UserBars & UserTravel>("user", [
+        "timestamp",
+        "cooldowns",
+        "bars",
+        "travel",
+    ]);
 
     await dataBucket.set({
         cooldowns: {
@@ -18,6 +23,12 @@ export async function updateUserdata() {
         happy: getBarData(userdata.happy, timestamp),
         life: getBarData(userdata.life, timestamp),
         lastUpdate: getTimestamp(timestamp),
+        travel: {
+            destination: travel.destination,
+            timestamp: getTimestamp(travel.timestamp),
+            departed: getTimestamp(travel.departed),
+            timeLeft: travel.time_left > 0 ? travel.time_left : undefined,
+        },
     });
 }
 
