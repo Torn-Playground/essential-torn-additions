@@ -7,6 +7,7 @@
   "source": "src/manifest.json",
   "dependencies": {
     "@extend-chrome/storage": "^1.5.0",
+    "classnames": "^2.3.1",
     "date-fns": "^2.28.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

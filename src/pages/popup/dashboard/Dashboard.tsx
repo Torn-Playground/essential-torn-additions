@@ -44,7 +44,7 @@ export default function Dashboard() {
             <section className={styles.barWrapper}>
                 <DashboardBar name="Energy" bar={data.energy} link="https://www.torn.com/gym.php" progressColor="#56ad1e" />
                 <DashboardBar name="Nerve" bar={data.nerve} link="https://www.torn.com/crimes.php" progressColor="#cc4b2d" />
-                <DashboardBar name="Happy" bar={data.happy} link="https://www.torn.com/properties.php" progressColor="#ccb62a" />
+                <DashboardBar name="Happy" bar={data.happy} link="https://www.torn.com/properties.php" progressColor="#ccb62a" resetWhenOver={true} />
                 <DashboardBar name="Life" bar={data.life} link="https://www.torn.com/item.php#medical-items" progressColor="#3f43cf" />
                 {/* FIXME - Chain bar */}
                 {/* FIXME - Travel bar */}

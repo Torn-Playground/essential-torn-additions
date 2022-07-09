@@ -10,6 +10,7 @@ interface DashboardBarProps {
     bar: BarData;
     link: string;
     progressColor: string;
+    resetWhenOver?: boolean;
 }
 
 export default function DashboardBar(props: DashboardBarProps) {
@@ -27,7 +28,19 @@ export default function DashboardBar(props: DashboardBarProps) {
         if (!expired) return;
 
         setTickTime((tickTime) => tickTime + props.bar.interval * 1000);
-        setCurrentValue((currentValue) => currentValue + props.bar.increment);
+        setCurrentValue((currentValue) => {
+            const newValue = currentValue + props.bar.increment;
+
+            if (newValue > props.bar.maximum) {
+                if (props.resetWhenOver) {
+                    return props.bar.maximum;
+                }
+
+                return currentValue;
+            }
+
+            return newValue;
+        });
     }, [expired]);
 
     return (
@@ -40,6 +53,7 @@ export default function DashboardBar(props: DashboardBarProps) {
                 tickTime={tickTime}
                 fullTime={props.bar.fulltime}
                 progressColor={props.progressColor}
+                resetWhenOver={props.resetWhenOver}
             />
             <DashboardBarProgress currentValue={props.bar.current} maxValue={props.bar.maximum} color={props.progressColor} />
         </a>
