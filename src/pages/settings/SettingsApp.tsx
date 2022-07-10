@@ -5,10 +5,12 @@ import Option from "./option/Option";
 
 export default function SettingsApp() {
     return (
-        <>
-            <h1>Settings</h1>
-            <Settings />
-        </>
+        <section style={{ display: "flex", justifyContent: "center", height: "100vh", alignItems: "center" }}>
+            <div>
+                <h1>W.I.P.</h1>
+                <p>Coming soon, currently only the popup is available.</p>
+            </div>
+        </section>
     );
 }
 
