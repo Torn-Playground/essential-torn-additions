@@ -1,7 +1,12 @@
 import { createRoot } from "react-dom/client";
 import SettingsApp from "./SettingsApp";
+import ThemedPage from "@pages/common/themed-page/ThemedPage";
 
 const container = document.getElementById("root")!;
 
 const root = createRoot(container);
-root.render(<SettingsApp />);
+root.render(
+    <ThemedPage>
+        <SettingsApp />
+    </ThemedPage>,
+);
