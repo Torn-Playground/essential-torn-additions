@@ -5,7 +5,7 @@
   "author": "DeKleineKobini [2114440]",
   "version": "0.0.1",
   "background": {
-    "service_worker": "scripts/background/index.ts",
+    "service_worker": "scripts/background/background.ts",
     "type": "module"
   },
   "content_scripts": [
