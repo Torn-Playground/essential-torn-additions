@@ -1,4 +1,4 @@
-import { fetchData } from "@common/api";
+import { fetchData } from "@common/api/api";
 import { dataBucket } from "@common/data/data";
 import {
     UserBar,

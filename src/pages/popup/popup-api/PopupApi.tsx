@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchData, hasErrorResponse } from "@common/api";
+import { fetchData, hasErrorResponse } from "@common/api/api";
 import { KeyInfo } from "@common/api/key.types";
 import Message from "../../common/message/Message";
 import { apiBucket } from "@common/data/data";
