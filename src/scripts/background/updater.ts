@@ -1,5 +1,5 @@
 import { fetchData } from "@common/api/api";
-import { dataBucket } from "@common/data/data";
+import { apiBucket, dataBucket } from "@common/data/data";
 import {
     UserBar,
     UserBars,
@@ -13,6 +13,15 @@ import {
 } from "@common/api/user.types";
 import { ApiTimestamp } from "@common/api/api.types";
 import { BarData } from "@common/data/data.types";
+
+export async function triggerUserdataUpdate() {
+    const apiData = await apiBucket.get();
+    if (typeof apiData.apiKey === "undefined" || !apiData.apiKey) {
+        return;
+    }
+
+    return updateUserdata();
+}
 
 export async function updateUserdata() {
     const { timestamp, cooldowns, travel, events, messages, ...userdata } = await fetchData<
