@@ -11,13 +11,10 @@ import DashboardTravelBar from "@pages/popup/dashboard/dashboard-bar/DashboardTr
 import DashboardIndicators from "@pages/popup/dashboard/dashboard-indicators/DashboardIndicators";
 import DashboardStatus from "@pages/popup/dashboard/dashboard-status/DashboardStatus";
 import DashboardChainBar from "@pages/popup/dashboard/dashboard-bar/DashboardChainBar";
-import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
 import DashboardSettingsLink from "@pages/popup/dashboard/dashboard-settings-link/DashboardSettingsLink";
 
 export default function Dashboard() {
     const { data, loading, error } = useData(dataBucket, true);
-
-    const { expired: chainExpired } = useCountdownTimer(data?.chain.timeout);
 
     if (loading) {
         return (
