@@ -1,36 +1,22 @@
 @function map-deep-get($map, $keys...) {
-  @each $key in $keys {
-    $map: map-get($map, $key);
-  }
-  @return $map;
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
 }
 
 @mixin themable($theme-name, $theme-map) {
-  .#{$theme-name} {
-    background-color: map-get($theme-map, background-color);
-    color: map-get($theme-map, text-color);
+    .#{$theme-name} {
+        background-color: map-get($theme-map, background-color);
+        color: map-get($theme-map, text-color);
 
-    input[type='text'] {
-      background-color: map-deep-get($theme-map, input, background-color);
-      color: map-deep-get($theme-map, input, text-color);
-    }
+        input[type="text"] {
+            background-color: map-deep-get($theme-map, input, background-color);
+            color: map-deep-get($theme-map, input, text-color);
+        }
 
-    a {
-      color: map-get($theme-map, text-color);
+        a {
+            color: map-get($theme-map, text-color);
+        }
     }
-  }
 }
-
-$light-theme: (
-        primary: #1a8e9c,
-        secondary: #17ab6f,
-        tertiary: #c3d61b,
-
-        background-color: white,
-        text-color: black,
-        input: (
-                background-color: #17ab6f, // TODO - input color
-        ),
-);
-
-@include themable(light-theme, $light-theme);

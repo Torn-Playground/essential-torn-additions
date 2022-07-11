@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import * as styles from "./PopupBox.module.css";
+import * as styles from "./PopupBox.module.scss";
 
 interface PopupBoxProps {
     children: ReactNode;

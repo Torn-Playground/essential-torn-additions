@@ -3,7 +3,7 @@ import { fetchData, hasErrorResponse } from "@common/api/api";
 import { KeyInfo } from "@common/api/key.types";
 import Message from "../../common/message/Message";
 import { apiBucket } from "@common/data/data";
-import * as styles from "./PopupApi.module.css";
+import * as styles from "./PopupApi.module.scss";
 
 export default function PopupApi() {
     const [key, setKey] = useState("");

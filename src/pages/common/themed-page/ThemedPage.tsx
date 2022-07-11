@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { Theme, ThemeContext } from "./ThemeContext";
 import "./dark-theme.scss";
 import "./light-theme.scss";
-import "./reset.css";
+import "./reset.scss";
 
 interface ThemedPageProps {
     children: ReactNode;

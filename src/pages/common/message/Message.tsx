@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as styles from "./Message.module.css";
+import * as styles from "./Message.module.scss";
 
 interface MessageProps {
     text: string;

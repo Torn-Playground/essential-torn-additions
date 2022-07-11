@@ -1,20 +1,20 @@
 @use "theme";
 
 $light-colors: (
-        primary: #1a8e9c,
-        secondary: #17ab6f,
-        tertiary: #c3d61b,
+    primary: #1a8e9c,
+    secondary: #17ab6f,
+    tertiary: #c3d61b,
 
-        background-color: white,
-        text-color: black,
+    background-color: white,
+    text-color: black,
 );
 $light-theme: (
-        background-color: map-get($light-colors, background-color),
+    background-color: map-get($light-colors, background-color),
+    text-color: map-get($light-colors, text-color),
+    input: (
+        background-color: scale-color(map-get($light-colors, secondary), $lightness: 80%),
         text-color: map-get($light-colors, text-color),
-        input: (
-                background-color: scale-color(map-get($light-colors, secondary), $lightness: 80%),
-                text-color: map-get($light-colors, text-color),
-        ),
+    ),
 );
 
 @include theme.themable(light-theme, $light-theme);
