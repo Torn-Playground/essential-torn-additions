@@ -4,12 +4,18 @@ import { useInterval } from "../useInterval";
 
 type CountdownTimerValue = EpochTimeStamp | undefined;
 
+interface CountdownTimerOptions {
+    showSeconds: boolean;
+    showHours: boolean;
+    transferDays: boolean;
+}
+
 interface CountdownTimerResult {
     timer: string;
     expired: boolean;
 }
 
-function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, showHours: boolean): CountdownTimerResult {
+function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, showHours: boolean, transferDays: boolean): CountdownTimerResult {
     const [timer, setTimer] = useState("");
     const [expired, setExpired] = useState(false);
 
@@ -37,6 +43,10 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
             minutes = date.getUTCMinutes();
             seconds = date.getUTCSeconds();
 
+            if (transferDays) {
+                hours += (date.getUTCDate() - 1) * 24;
+            }
+
             setExpired(false);
         }
 
@@ -56,7 +66,18 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
 }
 
 export function useCountdownTimer(value: CountdownTimerValue): CountdownTimerResult;
+export function useCountdownTimer(value: CountdownTimerValue, options: Partial<CountdownTimerOptions>): CountdownTimerResult;
 export function useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, showHours: boolean): CountdownTimerResult;
-export function useCountdownTimer(value: CountdownTimerValue, showSeconds?: boolean, showHours?: boolean): CountdownTimerResult {
-    return _useCountdownTimer(value, showSeconds ?? true, showHours ?? false);
+export function useCountdownTimer(
+    value: CountdownTimerValue,
+    showSeconds?: boolean | Partial<CountdownTimerOptions>,
+    showHours?: boolean,
+): CountdownTimerResult {
+    if (typeof showSeconds === "object") {
+        const options = showSeconds;
+
+        return _useCountdownTimer(value, options.showSeconds ?? true, options.showHours ?? false, options.transferDays ?? false);
+    }
+
+    return _useCountdownTimer(value, showSeconds ?? true, showHours ?? false, false);
 }

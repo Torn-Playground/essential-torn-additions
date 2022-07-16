@@ -9,7 +9,7 @@ interface DashboardCooldownProps {
 }
 
 export default function DashboardCooldown(props: DashboardCooldownProps) {
-    const { timer } = useCountdownTimer(props.cooldown, true, true);
+    const { timer } = useCountdownTimer(props.cooldown, { showSeconds: true, showHours: true, transferDays: true });
 
     return (
         <a href={props.link} target="_blank" className={styles.cooldown}>
