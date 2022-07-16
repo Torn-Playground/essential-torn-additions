@@ -13,7 +13,6 @@ $dark-theme: (
     text-color: map-get($dark-colors, text-color),
     input: (
         background-color: scale-color(map-get($dark-colors, secondary), $lightness: -40%),
-        // TODO - input color
         text-color: map-get($dark-colors, text-color),
     ),
 );
