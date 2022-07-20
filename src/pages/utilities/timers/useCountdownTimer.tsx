@@ -50,7 +50,6 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
             setExpired(false);
         }
 
-        // TODO - days
         if (showHours) parts.push(hours);
         parts.push(minutes);
         if (showSeconds) parts.push(seconds);
