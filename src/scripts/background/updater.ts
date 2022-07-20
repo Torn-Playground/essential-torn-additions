@@ -1,13 +1,14 @@
 import { fetchData } from "@common/api/api";
 import { apiBucket, dataBucket } from "@common/data/data";
 import {
+    UserAttacks,
     UserBar,
     UserBars,
     UserCooldowns,
+    UserMessage,
     UserMoney,
     UserNewEvent,
     UserNewEvents,
-    UserNewMessage,
     UserNewMessages,
     UserProfile,
     UserTravel,
@@ -28,6 +29,8 @@ export async function updateUserdata() {
     const { timestamp, cooldowns, travel, events, messages, ...userdata } = await fetchData<
         ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages & UserProfile & UserMoney
     >("user", ["timestamp", "profile", "cooldowns", "bars", "travel", "newevents", "newmessages", "money"]);
+
+    const { attacks } = await fetchData<UserAttacks>("user", ["attacks"]);
 
     await dataBucket.set({
         cooldowns: {
@@ -103,7 +106,7 @@ function convertEvents(events: { [id: string]: UserNewEvent }): { event: string 
     });
 }
 
-function convertMessages(messages: { [id: string]: UserNewMessage }): { title: string }[] {
+function convertMessages(messages: { [id: string]: UserMessage }): { title: string }[] {
     return Object.entries(messages).map(([, value]) => {
         return { title: value.title };
     });
