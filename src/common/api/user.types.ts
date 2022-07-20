@@ -1,4 +1,4 @@
-export type UserSelection = "cooldowns" | "bars" | "travel" | "newevents" | "newmessages" | "profile";
+export type UserSelection = "cooldowns" | "bars" | "travel" | "newevents" | "newmessages" | "profile" | "money";
 
 export interface UserCooldowns {
     cooldowns: {
@@ -91,5 +91,21 @@ export interface UserProfile {
         state: string;
         color: string;
         until: number;
+    };
+}
+
+export interface UserMoney {
+    points: number;
+    cayman_bank: number;
+    vault_amount: number;
+    company_funds: number;
+    daily_networth: number;
+    money_onhand: number;
+    city_bank: {
+        amount: number;
+        /**
+         * Seconds till the bank investment is over.
+         */
+        time_left: number;
     };
 }

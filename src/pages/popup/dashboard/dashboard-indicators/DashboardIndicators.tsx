@@ -2,6 +2,7 @@ import DashboardIndicator from "@pages/popup/dashboard/dashboard-indicators/dash
 import { ETAUserdata } from "@common/data/data.types";
 import { Theme, ThemeContext } from "@pages/common/themed-page/ThemeContext";
 import * as styles from "./DashboardIndicators.module.scss";
+import { moneyFormatter } from "@common/formatting";
 
 interface DashboardIndicatorsProps {
     data: ETAUserdata;
@@ -24,6 +25,12 @@ export default function DashboardIndicators(props: DashboardIndicatorsProps) {
                 <section style={{ backgroundColor: getBackgroundColor(context.theme) }} className={styles.indicators}>
                     <DashboardIndicator name="Events" count={props.data.newEvents.length} link="https://www.torn.com/events.php" />
                     <DashboardIndicator name="Messages" count={props.data.newMessages.length} link="https://www.torn.com/messages.php" />
+                    <DashboardIndicator
+                        name="Cash"
+                        count={props.data.moneyOnHand}
+                        link="https://www.torn.com/properties.php#/p=options&tab=vault"
+                        formatter={moneyFormatter}
+                    />
                 </section>
             )}
         </ThemeContext.Consumer>

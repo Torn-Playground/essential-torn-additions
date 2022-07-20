@@ -47,6 +47,7 @@ export interface ETAUserdata {
         timeout: EpochTimeStamp | undefined;
         cooldown: number;
     };
+    moneyOnHand: number;
 }
 
 export interface BarData {
