@@ -44,17 +44,6 @@ export default function Dashboard() {
                 <DashboardBar name="Nerve" bar={data.nerve} link="https://www.torn.com/crimes.php" progressColor="#cc4b2d" />
                 <DashboardBar name="Happy" bar={data.happy} link="https://www.torn.com/properties.php" progressColor="#ccb62a" resetWhenOver={true} />
                 <DashboardBar name="Life" bar={data.life} link="https://www.torn.com/item.php#medical-items" progressColor="#3f43cf" />
-                {/* TODO - Reimplement*/}
-                {/*{data.chain.current > 0 ? (*/}
-                {/*    <DashboardChainBar*/}
-                {/*        name="Chain"*/}
-                {/*        currentValue={data.chain.current}*/}
-                {/*        maximumValue={data.chain.maximum}*/}
-                {/*        timeout={data.chain.timeout}*/}
-                {/*        link="https://www.torn.com/factions.php?step=your"*/}
-                {/*        progressColor="#6b6b6b"*/}
-                {/*    />*/}
-                {/*) : undefined}*/}
                 {typeof data.travel.timeLeft !== "undefined" ? (
                     <DashboardTravelBar
                         name="Travelling"
