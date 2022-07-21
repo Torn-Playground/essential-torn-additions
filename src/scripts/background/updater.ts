@@ -5,9 +5,9 @@ import {
     UserBar,
     UserBars,
     UserCooldowns,
+    UserEvent,
     UserMessage,
     UserMoney,
-    UserNewEvent,
     UserNewEvents,
     UserNewMessages,
     UserProfile,
@@ -100,7 +100,7 @@ function getBarData(bar: UserBar, timestamp: EpochTimeStamp): BarData {
     };
 }
 
-function convertEvents(events: { [id: string]: UserNewEvent }): { event: string }[] {
+function convertEvents(events: { [id: string]: UserEvent }): { event: string }[] {
     return Object.entries(events).map(([, value]) => {
         return { event: value.event };
     });
