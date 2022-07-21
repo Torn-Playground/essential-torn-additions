@@ -7,7 +7,7 @@ export interface TornMinimalAttack {
     defender_id: number;
     defender_faction: number;
     result: string; // Could be its own type if really needed.
-    stealthed: 0 | 1;
+    stealthed: NumberBoolean;
     respect: number;
 }
 
@@ -17,8 +17,8 @@ export type TornAttack = TornMinimalAttack & {
     defender_name: string;
     defender_factionname: string;
     chain: number;
-    raid: 0 | 1;
-    ranked_war: 0 | 1;
+    raid: NumberBoolean;
+    ranked_war: NumberBoolean;
     respect_gain: number;
     respect_loss: number;
     modifiers: {
