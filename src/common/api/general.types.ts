@@ -2,8 +2,8 @@ export interface TornMinimalAttack {
     code: string;
     timestamp_started: number;
     timestamp_ended: number;
-    attacker_id: number;
-    attacker_faction: number;
+    attacker_id: number | "";
+    attacker_faction: number | "";
     defender_id: number;
     defender_faction: number;
     result: string; // Could be its own type if really needed.
@@ -49,9 +49,9 @@ export interface TornMinimalRevive {
 
 export type TornRevive = TornMinimalRevive & {
     reviver_name: string;
-    reviver_factionname: string;
+    reviver_factionname: string | null;
     target_name: string;
-    target_factionname: string;
+    target_factionname: string | null;
 };
 
 export type TornGender = "Male" | "Female" | "Enby";

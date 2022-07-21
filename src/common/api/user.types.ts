@@ -69,6 +69,7 @@ export interface UserBars {
     awakemax: number;
     crimes: number;
     statstamp: number;
+    crimesmax: number;
     happymax: number;
     maxlife: number;
     donater: number;
@@ -85,6 +86,7 @@ export interface UserBars {
         maximum: number;
         timeout: number;
         cooldown: number;
+        modifier: number;
     };
 }
 
@@ -108,8 +110,8 @@ export interface UserBar {
 
 export interface UserTravel {
     travel: {
-        destination: string; // Could be its own type if really needed.
-        method: string; // Could be its own type if really needed.
+        destination: string;
+        method: string;
         timestamp: number;
         departed: number;
         time_left: number;
@@ -144,7 +146,7 @@ export interface UserMessage {
     timestamp: number;
     ID: number;
     name: string;
-    type: string; // Could be its own type if really needed.
+    type: string;
     title: string;
     seen: NumberBoolean;
     read: NumberBoolean;
@@ -156,7 +158,7 @@ export type UserProfile = UserBasic & {
     player_id: number;
     name: string;
     rank: string;
-    property: string; // Could be its own type if really needed.
+    property: string;
     signup: string;
     awards: number;
     friends: number;
@@ -164,16 +166,16 @@ export type UserProfile = UserBasic & {
     forum_posts: number;
     karma: number;
     age: number;
-    role: string; // Could be its own type if really needed.
+    role: string;
     donator: NumberBoolean;
     property_id: number;
     revivable: NumberBoolean;
     life: UserBar;
     job?: {
-        position: string; // Could be its own type if really needed.
+        position: string;
         company_id: number;
         company_name: string;
-        company_type: string;
+        company_type: number;
     };
     faction?: {
         position: string;
@@ -188,7 +190,6 @@ export type UserProfile = UserBasic & {
         duration: number;
     };
     basicicons: {
-        // Could be its own type if really needed.
         [id: string]: string;
     };
     states: {
@@ -196,7 +197,7 @@ export type UserProfile = UserBasic & {
         jail_timestamp: number;
     };
     last_action: {
-        status: string; // Could be its own type if really needed.
+        status: string;
         timestamp: number;
         relative: string;
     };
@@ -230,8 +231,8 @@ export interface UserAmmo {
     ammo: Array<{
         ammoID: number;
         typeID: number;
-        size: string; // Could be its own type if really needed.
-        type: string; // Could be its own type if really needed.
+        size: string;
+        type: string;
         quantity: number;
         equipped: NumberBoolean;
     }>;
@@ -257,8 +258,8 @@ export interface UserBasic {
     status: {
         description: string;
         details: string;
-        state: string; // Could be its own type if really needed.
-        color: string; // Could be its own type if really needed.
+        state: string;
+        color: string;
         until: number;
     };
 }
@@ -293,11 +294,11 @@ export interface UserBazaar {
 }
 
 export interface UserDisplay {
-    inventory: Array<TornBaseItem & { circulation: number }>;
+    display: Array<TornBaseItem & { circulation: number }>;
 }
 
 export interface UserInventory {
-    inventory: Array<TornBaseItem & { equipped: NumberBoolean }>;
+    inventory: Array<TornBaseItem & { equipped: number }>;
 }
 
 export interface UserCrimes {
@@ -328,10 +329,10 @@ export interface UserEducation {
 }
 
 export interface UserGym {
-    active_gym: number; // Could be its own type if really needed.
+    active_gym: number;
 }
 
-export interface UserHallOfFameCategory {
+interface UserHallOfFameCategory {
     value: number;
     rank: number;
 }
@@ -360,7 +361,6 @@ export interface UserHonors {
 
 export interface UserIcons {
     icons: {
-        // Could be its own type if really needed.
         [id: string]: string;
     };
 }
@@ -381,15 +381,17 @@ export interface UserJobPoints {
 
 export interface UserLog {
     log: {
-        log: number;
-        title: string;
-        timestamp: number;
-        category: string;
-        data: {
-            [key: string]: any;
-        };
-        params: {
-            [key: string]: any;
+        [log: string]: {
+            log: number;
+            title: string;
+            timestamp: number;
+            category: string;
+            data: {
+                [key: string]: any;
+            };
+            params: {
+                [key: string]: any;
+            };
         };
     };
 }
@@ -678,7 +680,7 @@ export interface UserProperties {
         [id: string]: {
             owner_id: number;
             property_type: number;
-            property: string; // Could be its own type if really needed.
+            property: string;
             status: string;
             happy: number;
             upkeep: number;
