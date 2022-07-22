@@ -1,5 +1,5 @@
 import { useData } from "../../utilities/useData";
-import { dataBucket } from "@common/data/data";
+import { userdataBucket } from "@common/data/data";
 import PopupBox from "../popup-box/PopupBox";
 import Message from "../../common/message/Message";
 import DashboardCooldown from "./dashboard-cooldown/DashboardCooldown";
@@ -13,7 +13,7 @@ import DashboardStatus from "@pages/popup/dashboard/dashboard-status/DashboardSt
 import DashboardSettingsLink from "@pages/popup/dashboard/dashboard-settings-link/DashboardSettingsLink";
 
 export default function Dashboard() {
-    const { data, loading, error } = useData(dataBucket, true);
+    const { data, loading, error } = useData(userdataBucket, true);
 
     if (loading) {
         return (

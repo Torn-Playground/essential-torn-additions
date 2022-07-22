@@ -1,8 +1,8 @@
 import { browser } from "webextension-polyfill-ts";
-import { triggerUserdataUpdate } from "./updater";
 import { createAlarm } from "./alarms";
 import { AlarmType } from "./alarms.types";
 import { fillApiData, fillSettings, fillUserdata } from "@common/data/default-data";
+import { triggerUserdataUpdate } from "@scripts/background/updater";
 
 createAlarm("updateUserdata", { periodInMinutes: 1 });
 browser.alarms.onAlarm.addListener((alarm) => {
@@ -30,5 +30,4 @@ browser.management.getSelf().then(async (info) => {
             triggerUserdataUpdate().catch((reason) => console.error("Failed to update userdata.", reason));
         })
         .catch((reason) => console.error("Failed to fill userdata.", reason));
-    await triggerUserdataUpdate();
 });

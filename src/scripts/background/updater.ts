@@ -1,5 +1,5 @@
 import { fetchData } from "@common/api/api";
-import { apiBucket, dataBucket } from "@common/data/data";
+import { apiBucket, userdataBucket } from "@common/data/data";
 import {
     UserAttacks,
     UserBar,
@@ -30,9 +30,7 @@ export async function updateUserdata() {
         ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages & UserProfile & UserMoney
     >("user", ["timestamp", "profile", "cooldowns", "bars", "travel", "newevents", "newmessages", "money"]);
 
-    const { attacks } = await fetchData<UserAttacks>("user", ["attacks"]);
-
-    await dataBucket.set({
+    await userdataBucket.set({
         cooldowns: {
             drug: getOptionalTimestampFromSeconds(timestamp, cooldowns.drug),
             booster: getOptionalTimestampFromSeconds(timestamp, cooldowns.booster),

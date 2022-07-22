@@ -30,4 +30,4 @@ export function updateSettings(path: string[], newValue: any) {
 
 export const apiBucket = getBucket<ETAApiData>("api");
 
-export const dataBucket = getBucket<ETAUserdata>("data");
+export const userdataBucket = getBucket<ETAUserdata>("userdata");
