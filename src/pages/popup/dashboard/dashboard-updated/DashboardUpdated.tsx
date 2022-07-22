@@ -1,6 +1,6 @@
-import { useDistanceTimer } from "@pages/utilities/timers/useDistanceTimer";
 import { updateUserdata } from "@scripts/background/updater";
 import * as styles from "./DashboardUpdated.module.scss";
+import { useDistanceTimer } from "@common/react-utilities/timers/useDistanceTimer";
 
 interface DashboardUpdatedProps {
     value: EpochTimeStamp;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { formatDistanceToNowStrict } from "date-fns";
-import { useInterval } from "../useInterval";
+import { useInterval } from "@common/react-utilities/useInterval";
 
 type CountdownTimerValue = EpochTimeStamp;
 

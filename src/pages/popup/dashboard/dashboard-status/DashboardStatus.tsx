@@ -1,7 +1,7 @@
-import { ETAUserdata } from "@common/data/data.types";
-import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
+import { ETAUserdata } from "@common/utilities/data/data.types";
 import DashboardStatusCountry from "@pages/popup/dashboard/dashboard-status/dashboard-status-country/DashboardStatusCountry";
 import DashboardStatusState from "@pages/popup/dashboard/dashboard-status/dashboard-status-state/DashboardStatusState";
+import { useCountdownTimer } from "@common/react-utilities/timers/useCountdownTimer";
 
 interface DashboardStatusProps {
     data: ETAUserdata;

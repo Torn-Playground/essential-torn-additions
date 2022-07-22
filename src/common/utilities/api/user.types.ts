@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { NumberBoolean, TornAttack, TornGender, TornMinimalAttack, TornMinimalRevive, TornRevive } from "@common/api/general.types";
+import { NumberBoolean, TornAttack, TornGender, TornMinimalAttack, TornMinimalRevive, TornRevive } from "@common/utilities/api/general.types";
 
 export type UserSelection =
     | "ammo"

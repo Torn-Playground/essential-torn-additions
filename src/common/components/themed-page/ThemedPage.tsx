@@ -1,26 +1,17 @@
-import { ReactNode, useEffect, useState } from "react";
-import { Theme, ThemeContext } from "./ThemeContext";
+import { ReactNode, useEffect } from "react";
 import "./dark-theme.scss";
 import "./light-theme.scss";
 import "./reset.scss";
+import { ThemeContext } from "@common/components/themed-page/ThemeContext";
+import { Theme, useTheme } from "@common/components/themed-page/useTheme";
 
 interface ThemedPageProps {
     children: ReactNode;
 }
 
 export default function ThemedPage(props: ThemedPageProps) {
-    const [theme, setTheme] = useState(Theme.DARK);
+    const { theme } = useTheme();
 
-    const changeTheme = (theme: Theme) => setTheme(theme);
-
-    useEffect(() => {
-        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            setTheme(Theme.DARK);
-        } else {
-            // Currently only DARK theme is supported.
-            setTheme(Theme.DARK);
-        }
-    }, []);
     useEffect(() => {
         switch (theme) {
             case Theme.LIGHT:
@@ -35,5 +26,5 @@ export default function ThemedPage(props: ThemedPageProps) {
         }
     }, [theme]);
 
-    return <ThemeContext.Provider value={{ theme, changeTheme }}>{props.children}</ThemeContext.Provider>;
+    return <ThemeContext.Provider value={{ theme }}>{props.children}</ThemeContext.Provider>;
 }

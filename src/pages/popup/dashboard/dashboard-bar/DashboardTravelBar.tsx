@@ -2,7 +2,7 @@ import DashboardBarProgress from "./dashboard-bar-progress/DashboardBarProgress"
 import * as styles from "./DashboardBar.module.scss";
 import { useState } from "react";
 import DashboardTravelBarInfo from "@pages/popup/dashboard/dashboard-bar/dashboard-bar-info/DashboardTravelBarInfo";
-import { useInterval } from "@pages/utilities/useInterval";
+import { useInterval } from "@common/react-utilities/useInterval";
 
 interface DashboardTravelBarProps {
     name: string;

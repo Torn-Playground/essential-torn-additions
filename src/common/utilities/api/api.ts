@@ -1,7 +1,7 @@
 import { ApiError, ApiId, ApiSection, ApiSelections } from "./api.types";
-import { UserSelection } from "@common/api/user.types";
-import { KeySelection } from "@common/api/key.types";
-import { apiBucket } from "@common/data/data";
+import { UserSelection } from "@common/utilities/api/user.types";
+import { KeySelection } from "@common/utilities/api/key.types";
+import { apiBucket } from "@common/utilities/data/data";
 
 function fetchTorn<T>(section: ApiSection, id: ApiId, apiKey: string, selections: Array<string>): Promise<T> {
     const params = new URLSearchParams();

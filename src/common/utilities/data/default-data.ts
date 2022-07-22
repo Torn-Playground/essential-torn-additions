@@ -1,7 +1,7 @@
-import { ETAApiData, ETASettings, ETAUserdata } from "@common/data/data.types";
+import { ETAApiData, ETASettings, ETAUserdata } from "@common/utilities/data/data.types";
 import { Bucket } from "@extend-chrome/storage";
 import merge from "ts-deepmerge";
-import { apiBucket, settingsBucket, userdataBucket } from "@common/data/data";
+import { apiBucket, settingsBucket, userdataBucket } from "@common/utilities/data/data";
 
 export const DEFAULT_SETTINGS: ETASettings = {
     notifications: {

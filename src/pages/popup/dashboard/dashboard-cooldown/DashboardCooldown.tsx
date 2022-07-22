@@ -1,5 +1,5 @@
-import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
 import * as styles from "./DashboardCooldown.module.scss";
+import { useCountdownTimer } from "@common/react-utilities/timers/useCountdownTimer";
 
 interface DashboardCooldownProps {
     name: string;

@@ -1,5 +1,5 @@
 import * as styles from "./DashboardIndicator.module.scss";
-import { commaFormatter, NumberFormatter } from "@common/formatting";
+import { commaFormatter, NumberFormatter } from "@common/utilities/formatting";
 
 interface DashboardIndicatorProps {
     name: string;

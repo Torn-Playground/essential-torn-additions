@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { NumberBoolean } from "@common/api/general.types";
+import { NumberBoolean } from "@common/utilities/api/general.types";
 
 export type TornSelection =
     | "bank"

@@ -1,10 +1,10 @@
-import { useData } from "../utilities/useData";
+import { useData } from "@common/react-utilities/useData";
 import Dashboard from "./dashboard/Dashboard";
 import PopupApi from "./popup-api/PopupApi";
-import { apiBucket } from "@common/data/data";
+import { apiBucket } from "@common/utilities/data/data";
 import ReactLoading from "react-loading";
-import Message from "../common/message/Message";
 import PopupBox from "./popup-box/PopupBox";
+import Message from "@common/components/message/Message";
 
 export default function PopupApp() {
     const { data: apiData, loading, error } = useData(apiBucket, true);

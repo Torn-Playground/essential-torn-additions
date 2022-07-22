@@ -13,6 +13,7 @@ export function startQuickItems(): boolean {
     }
 
     const element = document.createElement("div");
+    element.classList.add("eta-react-root");
 
     wrapper.insertAdjacentElement("beforebegin", element);
 

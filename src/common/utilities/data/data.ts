@@ -1,6 +1,6 @@
 import { getBucket } from "@extend-chrome/storage";
 import { ETAApiData, ETASettings, ETAUserdata } from "./data.types";
-import { DEFAULT_SETTINGS } from "@common/data/default-data";
+import { DEFAULT_SETTINGS } from "@common/utilities/data/default-data";
 
 export const settingsBucket = getBucket<ETASettings>("settings");
 export function updateSettings(path: string[], newValue: any) {

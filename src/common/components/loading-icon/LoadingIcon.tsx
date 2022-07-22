@@ -1,5 +1,6 @@
 import ReactLoading from "react-loading";
-import { Theme, ThemeContext } from "../themed-page/ThemeContext";
+import { Theme } from "@common/components/themed-page/useTheme";
+import { ThemeContext } from "@common/components/themed-page/ThemeContext";
 
 interface LoadingIconProps {
     size: number;

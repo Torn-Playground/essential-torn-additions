@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import SettingsApp from "./SettingsApp";
-import ThemedPage from "@pages/common/themed-page/ThemedPage";
+import ThemedPage from "@common/components/themed-page/ThemedPage";
 
 const container = document.getElementById("root")!;
 

@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import PopupApp from "./PopupApp";
-import ThemedPage from "../common/themed-page/ThemedPage";
+import ThemedPage from "@common/components/themed-page/ThemedPage";
 
 const container = document.getElementById("root")!;
 

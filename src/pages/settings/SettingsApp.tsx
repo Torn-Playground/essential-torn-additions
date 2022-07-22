@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { ETASettings } from "@common/data/data.types";
-import { settingsBucket } from "@common/data/data";
+import { ETASettings } from "@common/utilities/data/data.types";
+import { settingsBucket } from "@common/utilities/data/data";
 import Option from "./option/Option";
 
 export default function SettingsApp() {

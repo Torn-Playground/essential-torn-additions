@@ -1,6 +1,6 @@
-import { ETASettings } from "@common/data/data.types";
+import { ETASettings } from "@common/utilities/data/data.types";
 import { ChangeEvent } from "react";
-import { updateSettings } from "@common/data/data";
+import { updateSettings } from "@common/utilities/data/data";
 import { Paths } from "./option.types";
 
 interface OptionProps {

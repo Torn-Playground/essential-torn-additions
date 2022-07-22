@@ -1,7 +1,7 @@
 import * as styles from "./DashboardBarInfo.module.scss";
-import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
+import { useCountdownTimer } from "@common/react-utilities/timers/useCountdownTimer";
 
 interface DashboardBarInfoProps {
     hover: boolean;

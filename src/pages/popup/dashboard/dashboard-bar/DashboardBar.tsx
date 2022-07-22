@@ -2,8 +2,8 @@ import DashboardBarProgress from "./dashboard-bar-progress/DashboardBarProgress"
 import DashboardBarInfo from "./dashboard-bar-info/DashboardBarInfo";
 import * as styles from "./DashboardBar.module.scss";
 import { useEffect, useState } from "react";
-import { useCountdownTimer } from "@pages/utilities/timers/useCountdownTimer";
-import { BarData } from "@common/data/data.types";
+import { BarData } from "@common/utilities/data/data.types";
+import { useCountdownTimer } from "@common/react-utilities/timers/useCountdownTimer";
 
 interface DashboardBarProps {
     name: string;

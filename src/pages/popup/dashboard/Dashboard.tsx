@@ -1,9 +1,6 @@
-import { useData } from "../../utilities/useData";
-import { userdataBucket } from "@common/data/data";
-import PopupBox from "../popup-box/PopupBox";
-import Message from "../../common/message/Message";
+import { useData } from "@common/react-utilities/useData";
+import { userdataBucket } from "@common/utilities/data/data";
 import DashboardCooldown from "./dashboard-cooldown/DashboardCooldown";
-import LoadingIcon from "../../common/loading-icon/LoadingIcon";
 import * as styles from "./Dashboard.module.scss";
 import DashboardBar from "./dashboard-bar/DashboardBar";
 import DashboardUpdated from "./dashboard-updated/DashboardUpdated";
@@ -11,6 +8,9 @@ import DashboardTravelBar from "@pages/popup/dashboard/dashboard-bar/DashboardTr
 import DashboardIndicators from "@pages/popup/dashboard/dashboard-indicators/DashboardIndicators";
 import DashboardStatus from "@pages/popup/dashboard/dashboard-status/DashboardStatus";
 import DashboardSettingsLink from "@pages/popup/dashboard/dashboard-settings-link/DashboardSettingsLink";
+import LoadingIcon from "@common/components/loading-icon/LoadingIcon";
+import Message from "@common/components/message/Message";
+import PopupBox from "@pages/popup/popup-box/PopupBox";
 
 export default function Dashboard() {
     const { data, loading, error } = useData(userdataBucket, true);

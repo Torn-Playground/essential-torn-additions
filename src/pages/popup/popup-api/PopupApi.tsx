@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { fetchData, hasErrorResponse } from "@common/api/api";
-import { KeyInfo } from "@common/api/key.types";
-import Message from "../../common/message/Message";
-import { apiBucket } from "@common/data/data";
+import { fetchData, hasErrorResponse } from "@common/utilities/api/api";
+import { KeyInfo } from "@common/utilities/api/key.types";
+import { apiBucket } from "@common/utilities/data/data";
 import * as styles from "./PopupApi.module.scss";
 import { updateUserdata } from "@scripts/background/updater";
+import Message from "@common/components/message/Message";
 
 export default function PopupApi() {
     const [key, setKey] = useState("");

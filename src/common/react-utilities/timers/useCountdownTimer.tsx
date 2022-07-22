@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { toMultipleDigits } from "@common/utilities";
-import { useInterval } from "../useInterval";
+import { toMultipleDigits } from "@common/utilities/utilities";
+import { useInterval } from "@common/react-utilities/useInterval";
 
 type CountdownTimerValue = EpochTimeStamp | undefined;
 

@@ -1,7 +1,7 @@
 import { browser } from "webextension-polyfill-ts";
 import { createAlarm } from "./alarms";
 import { AlarmType } from "./alarms.types";
-import { fillApiData, fillSettings, fillUserdata } from "@common/data/default-data";
+import { fillApiData, fillSettings, fillUserdata } from "@common/utilities/data/default-data";
 import { triggerUserdataUpdate } from "@scripts/background/updater";
 
 createAlarm("updateUserdata", { periodInMinutes: 1 });

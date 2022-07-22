@@ -1,8 +1,9 @@
 import DashboardIndicator from "@pages/popup/dashboard/dashboard-indicators/dashboard-indicator/DashboardIndicator";
-import { ETAUserdata } from "@common/data/data.types";
-import { Theme, ThemeContext } from "@pages/common/themed-page/ThemeContext";
+import { ETAUserdata } from "@common/utilities/data/data.types";
 import * as styles from "./DashboardIndicators.module.scss";
-import { moneyFormatter } from "@common/formatting";
+import { moneyFormatter } from "@common/utilities/formatting";
+import { ThemeContext } from "@common/components/themed-page/ThemeContext";
+import { Theme } from "@common/components/themed-page/useTheme";
 
 interface DashboardIndicatorsProps {
     data: ETAUserdata;

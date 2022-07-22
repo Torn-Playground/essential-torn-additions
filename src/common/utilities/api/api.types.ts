@@ -1,5 +1,5 @@
 import { UserSelection } from "./user.types";
-import { KeySelection } from "@common/api/key.types";
+import { KeySelection } from "@common/utilities/api/key.types";
 
 export type ApiSection = "user" | "key";
 

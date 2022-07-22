@@ -1,0 +1,25 @@
+.spacer {
+    margin-bottom: 10px;
+}
+
+.editMargin {
+    margin-right: 4px;
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.containerTitle {
+    padding-left: 10px;
+    height: 30px;
+    font-size: 13px;
+    text-shadow: rgba(0, 0, 0, 0.65) 1px 1px 2px;
+    letter-spacing: 1px;
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    margin: initial;
+    color: var(--tt-theme-color);
+    background: var(--tt-theme-background);
+}
