@@ -1,15 +1,8 @@
 import { getBucket } from "@extend-chrome/storage";
 import { ETAApiData, ETASettings, ETAUserdata } from "./data.types";
+import { DEFAULT_SETTINGS } from "@common/data/default-data";
 
 export const settingsBucket = getBucket<ETASettings>("settings");
-export const DEFAULT_SETTINGS: ETASettings = {
-    notifications: {
-        types: {
-            drugCooldown: true,
-            boosterCooldown: true,
-        },
-    },
-};
 export function updateSettings(path: string[], newValue: any) {
     settingsBucket
         .set((s) => {
