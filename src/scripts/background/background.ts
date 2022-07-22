@@ -20,7 +20,7 @@ browser.alarms.onAlarm.addListener((alarm) => {
     }
 });
 
-browser.management.getSelf().then(async (info) => {
+browser.management.getSelf().then((info) => {
     console.log(`[ETA] Loading background for ${info.name} v${info.version}.`);
 
     fillSettings().catch((reason) => console.error("Failed to fill settings.", reason));
