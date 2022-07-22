@@ -1,7 +1,6 @@
 import { fetchData } from "@common/api/api";
 import { apiBucket, userdataBucket } from "@common/data/data";
 import {
-    UserAttacks,
     UserBar,
     UserBars,
     UserCooldowns,
