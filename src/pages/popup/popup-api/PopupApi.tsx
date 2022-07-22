@@ -4,6 +4,7 @@ import { KeyInfo } from "@common/api/key.types";
 import Message from "../../common/message/Message";
 import { apiBucket } from "@common/data/data";
 import * as styles from "./PopupApi.module.scss";
+import { updateUserdata } from "@scripts/background/updater";
 
 export default function PopupApi() {
     const [key, setKey] = useState("");
@@ -21,8 +22,15 @@ export default function PopupApi() {
                     setError(true);
                     setMessage("Access level of this key isn't sufficient. Use a key with with at least limited access.");
                 } else {
-                    setError(false);
-                    apiBucket.set({ apiKey: key }).then(() => setMessage("Saved your api key."));
+                    updateUserdata()
+                        .then(() => {
+                            setError(false);
+                            apiBucket.set({ apiKey: key }).then(() => setMessage("Saved your api key."));
+                        })
+                        .catch(() => {
+                            setError(true);
+                            apiBucket.set({ apiKey: key }).then(() => setMessage("Saved your api key, but failed to fetch your userdata."));
+                        });
                 }
             })
             .catch((reason) => {
