@@ -1,1 +1,1 @@
-export type AlarmType = "updateUserdata" | "notificationDrugCooldown";
+export type AlarmType = "updateUserdata";
