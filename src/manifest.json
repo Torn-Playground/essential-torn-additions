@@ -8,18 +8,9 @@
     "service_worker": "scripts/background/background.ts",
     "type": "module"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*/*"
-      ],
-      "js": [
-        "scripts/content/index.ts"
-      ]
-    }
-  ],
   "permissions": [
-    "alarms", "storage"
+    "alarms",
+    "storage"
   ],
   "options_ui": {
     "page": "pages/settings/settings.html",
@@ -39,5 +30,15 @@
     "16": "assets/images/icon_16.png",
     "32": "assets/images/icon_32.png",
     "64": "assets/images/icon_64.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.torn.com/*"
+      ],
+      "js": [
+        "scripts/content/item.ts"
+      ]
+    }
+  ]
 }
