@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export enum ContainerTheme {
     DEFAULT,
+    TORN,
+    UNIQUE,
 }
 
 export function useContainerTheme(): { theme: ContainerTheme } {

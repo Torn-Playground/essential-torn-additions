@@ -1,0 +1,58 @@
+.container {
+    margin-bottom: 16px;
+}
+
+:global body:not(.dark-mode) {
+    :local .containerBody {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+}
+
+:global body.dark-mode {
+    :local .containerBody {
+        background-color: #333;
+        color: #ddd;
+    }
+}
+
+.containerHeader {
+    color: var(--container-color);
+    background: var(--container-background);
+    cursor: pointer;
+
+    font: bold 12px/14px Arial;
+
+    height: 34px;
+    text-shadow: rgba(0, 0, 0, 0.65) 1px 1px 2px;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
+    align-items: center;
+
+    &.collapsed {
+        border-radius: 5px;
+    }
+
+    &:not(.collapsed) {
+        border-radius: 5px 5px 0 0;
+    }
+
+    & .title {
+        margin-left: 10px;
+    }
+
+    & .collapseIcon {
+        height: 34px;
+        width: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.containerBody {
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    padding: 5px;
+}

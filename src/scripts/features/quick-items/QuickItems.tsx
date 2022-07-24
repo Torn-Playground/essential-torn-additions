@@ -7,20 +7,8 @@ export default function QuickItems() {
     }, []);
 
     return (
-        <ThemedContainer>
-            <div
-                style={{
-                    height: "50px",
-                    width: "100%",
-                    backgroundColor: "black",
-                    color: "white",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <span>WIP</span>
-            </div>
+        <ThemedContainer name="Quick Items">
+            <span>WIP</span>
         </ThemedContainer>
     );
 }
