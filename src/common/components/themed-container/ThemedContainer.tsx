@@ -9,6 +9,7 @@ import { IoCaretDownOutline, IoCaretForwardOutline } from "react-icons/io5";
 interface ThemedContainerProps {
     children: ReactNode;
     name: string;
+    bodyClass?: string;
 }
 
 export default function ThemedContainer(props: ThemedContainerProps) {
@@ -39,8 +40,7 @@ export default function ThemedContainer(props: ThemedContainerProps) {
                 </div>
             </section>
             <HidableElement hidden={collapsed}>
-                {/* FIXME - Implement body. */}
-                <section className={styles.containerBody}>{props.children}</section>
+                <section className={classNames(styles.containerBody, `props.bodyClass ${props.bodyClass}`)}>{props.children}</section>
             </HidableElement>
         </div>
     );
