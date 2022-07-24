@@ -1,0 +1,57 @@
+.quickItem {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    //margin: 5px 5px 0 0;
+}
+
+.icon {
+    width: 60px;
+    height: 30px;
+    background-size: cover;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+}
+
+.quantity {
+    text-align: center;
+    font-size: 10px;
+}
+
+.closeIcon {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.quickItem:hover .closeIcon {
+    display: initial;
+}
+
+:global body:not(.dark-mode) {
+    :local .quickItem {
+        border: 1px solid lightgray;
+        background-color: white;
+    }
+
+    :local .quantity {
+        color: gray;
+    }
+}
+
+:global body.dark-mode {
+    :local .quickItem {
+        border: 1px solid #444;
+        background-color: #333;
+    }
+
+    :local .quantity {
+        color: #bdadad;
+    }
+}
