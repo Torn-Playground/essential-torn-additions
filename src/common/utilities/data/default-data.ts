@@ -74,6 +74,7 @@ const DEFAULT_USERDATA: ETAUserdata = {
         cooldown: 0,
     },
     moneyOnHand: 0,
+    inventory: [],
 };
 const DEFAULT_METADATA: ETAMetadata = {
     quickItems: {

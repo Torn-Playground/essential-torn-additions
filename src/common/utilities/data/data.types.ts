@@ -48,6 +48,16 @@ export interface ETAUserdata {
         cooldown: number;
     };
     moneyOnHand: number;
+    inventory: Array<InventoryItem>;
+}
+
+interface InventoryItem {
+    id: number;
+    name: string;
+    type: string;
+    equipped: number;
+    value: number;
+    quantity: number;
 }
 
 export interface BarData {

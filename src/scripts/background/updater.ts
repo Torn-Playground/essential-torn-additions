@@ -5,6 +5,7 @@ import {
     UserBars,
     UserCooldowns,
     UserEvent,
+    UserInventory,
     UserMessage,
     UserMoney,
     UserNewEvents,
@@ -25,9 +26,9 @@ export async function triggerUserdataUpdate() {
 }
 
 export async function updateUserdata() {
-    const { timestamp, cooldowns, travel, events, messages, ...userdata } = await fetchData<
-        ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages & UserProfile & UserMoney
-    >("user", ["timestamp", "profile", "cooldowns", "bars", "travel", "newevents", "newmessages", "money"]);
+    const { timestamp, cooldowns, travel, events, messages, inventory, ...userdata } = await fetchData<
+        ApiTimestamp & UserCooldowns & UserBars & UserTravel & UserNewEvents & UserNewMessages & UserProfile & UserMoney & UserInventory
+    >("user", ["timestamp", "profile", "cooldowns", "bars", "travel", "newevents", "newmessages", "money", "inventory"]);
 
     await userdataBucket.set({
         cooldowns: {
@@ -61,6 +62,14 @@ export async function updateUserdata() {
             cooldown: userdata.chain.cooldown,
         },
         moneyOnHand: userdata.money_onhand,
+        inventory: inventory.map((item) => ({
+            id: item.ID,
+            name: item.name,
+            type: item.type,
+            equipped: item.equipped,
+            value: item.market_price,
+            quantity: item.quantity,
+        })),
     });
 }
 
