@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { ContainerTheme, useContainerTheme } from "@common/components/themed-container/useContainerTheme";
 import HidableElement from "@common/components/hidable-element/HidableElement";
 import * as styles from "./ThemedContainer.module.scss";
@@ -10,12 +10,14 @@ interface ThemedContainerProps {
     children: ReactNode;
     name: string;
     bodyClass?: string;
+    allowDragging?: boolean;
+    onDrop?: () => void;
+    collapsed: boolean;
+    onCollapsedUpdate: (collapsed: boolean) => void;
 }
 
 export default function ThemedContainer(props: ThemedContainerProps) {
     const { theme } = useContainerTheme();
-
-    const [collapsed, setCollapsed] = useState(false);
 
     const getThemeClass = () => {
         switch (theme) {
@@ -31,16 +33,32 @@ export default function ThemedContainer(props: ThemedContainerProps) {
 
     return (
         <div className={classNames("eta-container", styles.container, getThemeClass())}>
-            <section className={classNames([styles.containerHeader, { [styles.collapsed]: collapsed }])} onClick={() => setCollapsed((x) => !x)}>
+            <section
+                className={classNames([styles.containerHeader, { [styles.collapsed]: props.collapsed }])}
+                onClick={() => props.onCollapsedUpdate(!props.collapsed)}
+            >
                 <div className={styles.title}>{props.name}</div>
                 <div>
-                    {/* FIXME - Implement options. */}
-                    {/*<div className={styles.icons}>OPTIONS</div>*/}
-                    <div className={styles.collapseIcon}>{collapsed ? <IoCaretForwardOutline size={16} /> : <IoCaretDownOutline size={16} />}</div>
+                    <div className={styles.collapseIcon}>{props.collapsed ? <IoCaretForwardOutline size={16} /> : <IoCaretDownOutline size={16} />}</div>
                 </div>
             </section>
-            <HidableElement hidden={collapsed}>
-                <section className={classNames(styles.containerBody, `props.bodyClass ${props.bodyClass}`)}>{props.children}</section>
+            <HidableElement hidden={props.collapsed}>
+                <section
+                    className={classNames(styles.containerBody, `props.bodyClass ${props.bodyClass}`)}
+                    onDragOver={props.allowDragging ? (event) => event.preventDefault() : undefined}
+                    onDrop={
+                        props.allowDragging
+                            ? (event) => {
+                                  props.onDrop?.();
+
+                                  event.preventDefault();
+                                  event.dataTransfer.clearData();
+                              }
+                            : undefined
+                    }
+                >
+                    {props.children}
+                </section>
             </HidableElement>
         </div>
     );

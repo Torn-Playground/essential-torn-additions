@@ -58,3 +58,16 @@ export interface BarData {
     interval: number;
     increment: number;
 }
+
+export interface ETAMetadata {
+    quickItems: {
+        collapsed: boolean;
+        items: Array<StoredQuickItem>;
+    };
+}
+
+export interface StoredQuickItem {
+    id: number;
+    category: string;
+    name: string;
+}

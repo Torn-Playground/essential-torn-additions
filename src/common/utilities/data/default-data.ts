@@ -1,7 +1,7 @@
-import { ETAApiData, ETASettings, ETAUserdata } from "@common/utilities/data/data.types";
+import { ETAApiData, ETAMetadata, ETASettings, ETAUserdata } from "@common/utilities/data/data.types";
 import { Bucket } from "@extend-chrome/storage";
 import merge from "ts-deepmerge";
-import { apiBucket, settingsBucket, userdataBucket } from "@common/utilities/data/data";
+import { apiBucket, metadataBucket, settingsBucket, userdataBucket } from "@common/utilities/data/data";
 
 export const DEFAULT_SETTINGS: ETASettings = {
     notifications: {
@@ -75,6 +75,12 @@ const DEFAULT_USERDATA: ETAUserdata = {
     },
     moneyOnHand: 0,
 };
+const DEFAULT_METADATA: ETAMetadata = {
+    quickItems: {
+        collapsed: false,
+        items: [],
+    },
+};
 
 async function fillStorage<T extends object>(bucket: Bucket<T>, defaultData: T): Promise<T> {
     return await bucket.set((data) => {
@@ -85,3 +91,4 @@ async function fillStorage<T extends object>(bucket: Bucket<T>, defaultData: T):
 export const fillSettings = () => fillStorage(settingsBucket, DEFAULT_SETTINGS);
 export const fillApiData = () => fillStorage(apiBucket, DEFAULT_API_DATA);
 export const fillUserdata = () => fillStorage(userdataBucket, DEFAULT_USERDATA);
+export const fillMetadata = () => fillStorage(metadataBucket, DEFAULT_METADATA);

@@ -20,3 +20,26 @@ export function startQuickItems(): boolean {
     render(element);
     return true;
 }
+
+function isEligible(id: number, category: string) {
+    return (
+        ["Medical", "Drug", "Energy Drink", "Alcohol", "Candy", "Booster"].includes(category) ||
+        [
+            // Temporary Items
+            220, 221, 222, 226, 229, 239, 242, 246, 256, 257, 392, 394, 581, 611, 616, 742, 833, 840, 1042,
+            // Others
+            403,
+        ].includes(id)
+    );
+}
+
+export function isEquipable(category: string) {
+    return ["Temporary"].includes(category);
+}
+
+export function getEligibleElements() {
+    // @ts-ignore
+    return ([...document.querySelectorAll(".items-cont[aria-expanded=true] > li[data-item]")] as Array<HTMLElement>).filter((item) =>
+        isEligible(parseInt(item.dataset.item || ""), item.dataset.category || ""),
+    );
+}
