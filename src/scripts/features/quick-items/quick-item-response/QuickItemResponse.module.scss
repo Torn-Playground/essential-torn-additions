@@ -1,9 +1,26 @@
 .quickResponse {
     text-align: center;
-    width: 100%;
+    background: white;
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-bottom: -5px;
+    padding: 8px;
+    width: calc(100% + 10px);
 
     & :global .ajax-preloader {
         position: initial !important;
+    }
+}
+
+:global body:not(.dark-mode) {
+    :local .quickResponse {
+        background-color: white;
+    }
+}
+
+:global body.dark-mode {
+    :local .quickResponse {
+        background-color: #242424;
     }
 }
 
