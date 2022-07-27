@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { toMultipleDigits } from "@common/utilities/utilities";
 import { useInterval } from "@common/react-utilities/useInterval";
+import { timerFormatter } from "@common/utilities/formatting";
 
 type CountdownTimerValue = EpochTimeStamp | undefined;
 
@@ -54,7 +54,7 @@ function _useCountdownTimer(value: CountdownTimerValue, showSeconds: boolean, sh
         parts.push(minutes);
         if (showSeconds) parts.push(seconds);
 
-        setTimer(parts.map((p) => toMultipleDigits(p)).join(":"));
+        setTimer(timerFormatter(parts));
     };
 
     useEffect(updateValue, []);

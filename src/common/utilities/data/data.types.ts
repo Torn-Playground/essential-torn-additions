@@ -80,4 +80,5 @@ export interface StoredQuickItem {
     id: number;
     category: string;
     name: string;
+    xid?: number;
 }

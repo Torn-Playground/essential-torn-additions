@@ -1,0 +1,15 @@
+.quickResponse {
+    text-align: center;
+    width: 100%;
+
+    & :global .ajax-preloader {
+        position: initial !important;
+    }
+}
+
+.quickLoading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
