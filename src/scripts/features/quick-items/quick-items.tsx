@@ -42,10 +42,8 @@ export function isEquipable(category: string) {
 export function useItemQuickly(item: QuickItem): Promise<TornQuickItemResponse> {
     const equipable = isEquipable(item.category);
 
-    // FIXME - Rework function.
     const body = new URLSearchParams();
     if (equipable) {
-        // FIXME - Implement equipable item.
         if (!item.xid) {
             throw "Equipable item does not have correct data stored!";
         }

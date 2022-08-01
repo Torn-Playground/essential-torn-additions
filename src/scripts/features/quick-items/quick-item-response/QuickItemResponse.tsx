@@ -16,7 +16,7 @@ interface QuickItemResponseProps {
 export default function QuickItemResponse(props: QuickItemResponseProps) {
     if (props.loading) {
         return (
-            <div className={styles.quickLoading}>
+            <div className={classNames(styles.quickResponse, styles.quickLoading)}>
                 {/* FIXME - Change color depending on theme. */}
                 <LoadingIcon size={32} color={"black"} />
             </div>

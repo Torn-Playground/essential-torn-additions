@@ -9,6 +9,7 @@ import QuickItemResponse from "@scripts/features/quick-items/quick-item-response
 
 export default function QuickItems() {
     // FIXME - Add a way to add quick items.
+    const [initialised, setInitialised] = useState(false);
     const [items, setItems] = useState<Array<QuickItem>>([]);
     const [collapsed, setCollapsed] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -51,11 +52,23 @@ export default function QuickItems() {
                         };
                     }),
                 );
+                setInitialised(true);
             });
+            // const items: Array<QuickItem> = [
+            //     { id: 206, category: "Drug", name: "Xanax", quantity: 159 },
+            //     { id: 180, category: "Alcohol", name: "Bottle of Beer", quantity: 12197 },
+            //     { id: 256, category: "Temporary", name: "Tear Gas", quantity: 5, xid: 8140064694 },
+            // ];
+            // setItems(items);
+            // saveItems(items);
 
             setCollapsed(metadata.quickItems.collapsed);
         });
     }, []);
+
+    if (!initialised) {
+        return <></>;
+    }
 
     return (
         <ThemedContainer name="Quick Items" bodyClass={classNames(styles.quickItemContainer)} collapsed={collapsed} onCollapsedUpdate={updateCollapsed}>
@@ -81,13 +94,14 @@ export default function QuickItems() {
                             setSuccess(false);
                             setResponse(response.error);
                             setLinks([]);
-                        } else {
-                            setSuccess(success);
+                        } else if ("isEquipable" in response) {
+                            setSuccess(true);
                             setResponse(response.text);
-
-                            if ("links" in response) {
-                                setLinks(response.links);
-                            }
+                            setLinks([]);
+                        } else {
+                            setSuccess(response.success);
+                            setResponse(response.text);
+                            setLinks(response.links);
                         }
                     }}
                 />

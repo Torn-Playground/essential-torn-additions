@@ -41,7 +41,7 @@ export default function ThemedContainer(props: ThemedContainerProps) {
                 </div>
             </section>
             <HidableElement hidden={props.collapsed}>
-                <section className={classNames(styles.containerBody, `props.bodyClass ${props.bodyClass}`)}>{props.children}</section>
+                <section className={classNames(styles.containerBody, props.bodyClass)}>{props.children}</section>
             </HidableElement>
         </div>
     );

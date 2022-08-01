@@ -4,23 +4,23 @@
     border-radius: 5px;
     cursor: pointer;
     position: relative;
-    //margin: 5px 5px 0 0;
-}
 
-.icon {
-    width: 60px;
-    height: 30px;
-    background-size: cover;
-    margin: auto;
-}
+    &:hover .closeIcon {
+        display: initial;
+    }
 
-.title {
-    text-align: center;
+    &.equipable {
+        border-color: gold !important;
+    }
 }
 
 .quantity {
     text-align: center;
     font-size: 10px;
+}
+
+.title {
+    text-align: center;
 }
 
 .closeIcon {
@@ -30,28 +30,39 @@
     right: 4px;
 }
 
-.quickItem:hover .closeIcon {
-    display: initial;
+.icon {
+    width: 60px;
+    height: 30px;
+    background-size: cover;
+    margin: auto;
 }
 
-:global body:not(.dark-mode) {
-    :local .quickItem {
+:global(body:not(.dark-mode)) {
+    .quickItem {
         border: 1px solid lightgray;
         background-color: white;
+
+        &.equipped {
+            background-color: #b7d4fc;
+        }
     }
 
-    :local .quantity {
+    .quantity {
         color: gray;
     }
 }
 
-:global body.dark-mode {
-    :local .quickItem {
+:global(body.dark-mode) {
+    .quickItem {
         border: 1px solid #444;
         background-color: #333;
+
+        &.equipped {
+            background-color: #535b5e;
+        }
     }
 
-    :local .quantity {
+    .quantity {
         color: #bdadad;
     }
 }
