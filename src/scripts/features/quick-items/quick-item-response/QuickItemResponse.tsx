@@ -3,6 +3,7 @@ import LoadingIcon from "@common/components/loading-icon/LoadingIcon";
 import classNames from "classnames";
 import ResponseLinks from "@scripts/features/quick-items/quick-item-response/quick-item-response-links/ResponseLinks";
 import { TornQuickItemLink } from "@scripts/features/quick-items/quick-items.types";
+import { TornTheme, useTornTheme } from "@common/components/themed-container/useTornTheme";
 import ResponseText from "@scripts/features/quick-items/quick-item-response/ResponseText";
 
 interface QuickItemResponseProps {
@@ -15,10 +16,11 @@ interface QuickItemResponseProps {
 
 export default function QuickItemResponse(props: QuickItemResponseProps) {
     if (props.loading) {
+        const { theme: tornTheme } = useTornTheme();
+
         return (
             <div className={classNames(styles.quickResponse, styles.quickLoading)}>
-                {/* FIXME - Change color depending on theme. */}
-                <LoadingIcon size={32} color={"black"} />
+                <LoadingIcon size={32} color={tornTheme === TornTheme.LIGHT ? "black" : "white"} />
             </div>
         );
     }
