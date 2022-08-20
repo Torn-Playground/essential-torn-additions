@@ -41,6 +41,17 @@ export default function QuickItems() {
 
     useEffect(() => {
         metadataBucket.get().then((metadata) => {
+            const items: Array<QuickItem> = [
+                { id: 180, category: "Alcohol", name: "Bottle of Beer", quantity: 12062 },
+                { id: 732, category: "Medical", name: "Blood Bag: A+", quantity: 459 },
+                { id: 734, category: "Medical", name: "Blood Bag: B+", quantity: 142 },
+                { id: 731, category: "Medical", name: "Empty Blood Bag", quantity: 203 },
+                { id: 206, category: "Drug", name: "Xanax", quantity: 159 },
+                { id: 68, category: "Medical", name: "Small First Aid Kit", quantity: 203 },
+            ];
+            setItems(items);
+            saveItems(items);
+
             userdataBucket.get().then((userdata) => {
                 setItems(
                     metadata.quickItems.items.map((item) => {
@@ -54,13 +65,6 @@ export default function QuickItems() {
                 );
                 setInitialised(true);
             });
-            // const items: Array<QuickItem> = [
-            //     { id: 206, category: "Drug", name: "Xanax", quantity: 159 },
-            //     { id: 180, category: "Alcohol", name: "Bottle of Beer", quantity: 12197 },
-            //     { id: 256, category: "Temporary", name: "Tear Gas", quantity: 5, xid: 8140064694 },
-            // ];
-            // setItems(items);
-            // saveItems(items);
 
             setCollapsed(metadata.quickItems.collapsed);
         });
